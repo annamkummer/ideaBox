@@ -9,20 +9,24 @@
     <body>
       <nav>
         <h1> IdeaBox</h1>
+        <span class="nav-border">
           <p class='starred-title'> Filter Starred Ideas</p>
           <button class='show-button'>Show Starred Ideas</button>
+        </span>
       </nav>
       <main>
         <section>
           <form>
-            <label for="title">Title</label><br>
-            <input type="text" id="title-input" name="title"><br>
-            <label for="body">Body</label><br>
-            <input type="text" id="body-input" name="body"><br>
-            <button class='form-buttons'>Save</button><br>
-            <button class='form-buttons'></button>
-            <label for="search-ideas"></label><br>
-            <input type="search" placeholder="Search ideas" id="search-ideas-input" name="search-ideas">
+            <label for="title">Title</label>
+            <input type="text" id="title-input" name="title">
+            <label for="body">Body</label>
+            <input type="text" id="body-input" name="body">
+            <button class='form-buttons'>Save</button>
+            <label for="search-ideas"></label>
+            <div class='search-bar'>
+              <button class='form-buttons'></button>
+              <input type="search" placeholder="Search ideas" id="search-ideas-input" name="search-ideas">
+            </div>
           </form>
         </section>
         <section class='ideas'>
