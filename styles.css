@@ -18,8 +18,8 @@ body {
 
 nav {
   background-color: #1F1F3D;
-  padding: 1% 2%;
-  width: 70%;
+  /* width: 70%; */
+  flex: 1;
 }
 
 form {
@@ -35,22 +35,30 @@ h1,
 .form-buttons {
   color: #E9E9F3;
   font-size: 95%;
+  padding: 1% 2%;
+}
+
+h1 {
+  padding: 1% 10%;
 }
 
 .starred-title {
   color: #BFBFDD;
   font-size: 70%;
   font-weight: bold;
+  margin-bottom: 10%;
+  padding: 1% 2%;
 }
 
 .show-button {
   background-color: #5356A4;
   border: 0;
-  padding: 5%;
+  padding: 5% 10%;
 }
 
 main {
   background-color: #A9AAD2;
+  flex: 4;
 }
 
 .form-buttons {
@@ -69,5 +77,7 @@ main {
 }
 
 .nav-border {
-  
+  border-top: 1px solid #353567;
+  border-bottom: 1px solid #353567;
+  padding: 5% 10% 10% 10%;
 }
