@@ -4,13 +4,13 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
   </head>
     <body>
       <nav>
         <h1> IdeaBox</h1>
-          <p> Filter Starred Ideas</p>
-          <button>Show Starred Ideas</button>
+          <p class='starred-title'> Filter Starred Ideas</p>
+          <button class='show-button'>Show Starred Ideas</button>
       </nav>
       <main>
         <section>
@@ -19,12 +19,13 @@
             <input type="text" id="title-input" name="title"><br>
             <label for="body">Body</label><br>
             <input type="text" id="body-input" name="body"><br>
-            <button>Save</button><br>
+            <button class='form-buttons'>Save</button><br>
+            <button class='form-buttons'></button>
             <label for="search-ideas"></label><br>
             <input type="search" placeholder="Search ideas" id="search-ideas-input" name="search-ideas">
           </form>
         </section>
-        <section>
+        <section class='ideas'>
           <article>
             <header></header>
             <h3>Idea title</h3>
@@ -57,4 +58,7 @@
           </article>
         </section>
       </main>
+      <script type='text/javascript' src='main.js'></script>
+      <script type='text/javascript' src='Idea.js'></script>
     </body>
+  </html>

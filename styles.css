@@ -1,0 +1,44 @@
+/* Dark Purple - #1F1F3D
+Light Purple - #A9AAD2
+Light Gray - #EAEAF4
+white - #FFFFF
+comment text - #E9E9F3
+button background - #5356A4
+divider line - #E9E9F3
+ */
+
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
+nav {
+  background-color: #1F1F3D;
+}
+
+h1,
+.show-button,
+.form-buttons {
+  color: #E9E9F3;
+}
+
+.starred-title {
+  color: #BFBFDD;
+}
+
+.show-button {
+  background-color: #5356A4;
+  border: 0;
+}
+
+main {
+  background-color: #A9AAD2;
+}
+
+.form-buttons {
+  /* revisit this color */
+  background-color: #1F1F3D;
+}
+
+.ideas {
+  background-color: #EAEAF4;
+}
