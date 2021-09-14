@@ -1,0 +1,21 @@
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
+nav {
+  background-color: #1F1F3D;
+}
+
+h1,
+.show-button {
+  color: #E9E9F3;
+}
+
+.starred-title {
+  color: #BFBFDD;
+}
+
+.show-button {
+  background-color: #5356A4;
+  border: 0;
+}
