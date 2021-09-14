@@ -11,23 +11,42 @@ divider line - #E9E9F3
   font-family: 'Open Sans', sans-serif;
 }
 
+body {
+  display: flex;
+  height: 100vh;
+}
+
 nav {
   background-color: #1F1F3D;
+  padding: 1% 2%;
+  width: 70%;
+}
+
+form {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 h1,
 .show-button,
 .form-buttons {
   color: #E9E9F3;
+  font-size: 95%;
 }
 
 .starred-title {
   color: #BFBFDD;
+  font-size: 70%;
+  font-weight: bold;
 }
 
 .show-button {
   background-color: #5356A4;
   border: 0;
+  padding: 5%;
 }
 
 main {
@@ -37,8 +56,18 @@ main {
 .form-buttons {
   /* revisit this color */
   background-color: #1F1F3D;
+  margin: 1%;
 }
 
 .ideas {
   background-color: #EAEAF4;
+  display: flex;
+}
+
+.search-bar {
+  display: flex;
+}
+
+.nav-border {
+  
 }
