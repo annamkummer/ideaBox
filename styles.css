@@ -28,6 +28,7 @@ form {
   justify-content: center;
   flex-direction: column;
   flex-wrap: wrap;
+  background-color: #A9AAD2;
 }
 
 h1,
@@ -57,7 +58,7 @@ h1 {
 }
 
 main {
-  background-color: #A9AAD2;
+  background-color: #EAEAF4;
   flex: 4;
 }
 
@@ -68,7 +69,6 @@ main {
 }
 
 .ideas {
-  background-color: #EAEAF4;
   display: flex;
 }
 
@@ -80,4 +80,9 @@ main {
   border-top: 1px solid #353567;
   border-bottom: 1px solid #353567;
   padding: 5% 10% 10% 10%;
+}
+
+.form-labels {
+  font-size: 70%;
+  font-weight: bold;
 }
