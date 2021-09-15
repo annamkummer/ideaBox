@@ -7,7 +7,21 @@ var ideaSection = document.querySelector('#ideas-section');
 
 
 
-saveButton.addEventListener('click', createNewIdea)
+saveButton.addEventListener('click', createNewIdea);
+titleInput.addEventListener('keydown', checkInputs);
+bodyInput.addEventListener('keydown', checkInputs);
+
+function checkInputs(){
+  var title = titleInput.value;
+  var body = bodyInput.value;
+  if (!title || !body){
+    saveButton.disabled = true;
+  }else{
+  saveButton.disabled = false;
+  }
+}
+checkInputs();
+
 
 function createNewIdea() {
    var title = titleInput.value;
@@ -16,9 +30,12 @@ function createNewIdea() {
      var newIdea = new Idea(title, body);
      list.push(newIdea);
      displayCard()
+     titleInput.value = '';
+     bodyInput.value = '';
    } else {
      console.log('add error message?');
    }
+
 
    console.log(list);
    event.preventDefault()
