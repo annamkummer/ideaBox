@@ -45,6 +45,10 @@ footer,
   color: #E9E9F3;
 }
 
+button{
+  cursor: pointer;
+}
+
 .save-button {
   padding: 2%;
   background-color: #353567;
@@ -53,7 +57,10 @@ footer,
   border: 1px solid #7b7dc0;
   border-radius: 3px;
 }
+/* .save-button:hover{
+  background-color: #A9AAD2; */
 
+/* } */
 h1 {
   padding: 1% 10%;
 }
