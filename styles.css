@@ -5,40 +5,173 @@ white - #FFFFF
 comment text - #E9E9F3
 button background - #5356A4
 divider line - #E9E9F3
+other purple - #353567
  */
 
 * {
   font-family: 'Open Sans', sans-serif;
 }
 
+body {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  height: 100vh;
+  margin: 0;
+}
+
 nav {
   background-color: #1F1F3D;
 }
 
+form {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: #A9AAD2;
+  padding: 2% 25%;
+}
+
+img {
+  width: 15%;
+}
+
 h1,
+footer,
 .show-button,
-.form-buttons {
+.save-button {
+  font-size: 95%;
   color: #E9E9F3;
+}
+
+.save-button {
+  padding: 2%;
+  background-color: #353567;
+  margin: 5% 0%;
+  border: none;
+  border: 1px solid #7b7dc0;
+  border-radius: 3px;
+}
+
+h1 {
+  padding: 1% 10%;
+}
+
+h3 {
+  margin: 0;
+  padding-top: 5%;
 }
 
 .starred-title {
   color: #BFBFDD;
+  font-size: 70%;
+  font-weight: bold;
+  margin-bottom: 10%;
+  padding: 1% 2%;
 }
 
 .show-button {
   background-color: #5356A4;
   border: 0;
+  padding: 5% 10%;
 }
 
 main {
-  background-color: #A9AAD2;
+  background-color: #EAEAF4;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+footer {
+  background-color: #5356A4;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-transform: capitalize;
+  color: #E9E9F3;
+  font-weight: bold;
+  border-top: 1px solid #1F1F3D;
 }
 
 .form-buttons {
-  /* revisit this color */
-  background-color: #1F1F3D;
+  background-color: #353567;
+  margin: 1% 0;
+  border: none;
 }
 
 .ideas {
-  background-color: #EAEAF4;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-gap: 2.5% 1.5%;
+  margin: 2%;
+}
+
+.search-bar {
+  display: grid;
+  grid-template-columns: 10% 90%;
+}
+
+.nav-border {
+  border-top: 1px solid #353567;
+  border-bottom: 1px solid #353567;
+  padding: 5% 10% 10% 10%;
+}
+
+.form-labels {
+  font-size: 70%;
+  font-weight: bold;
+  color: #353567;
+  margin: 2% 0 1%;
+}
+
+.idea-cards {
+  border: 1px solid #1F1F3D;
+  background-color: #1F1F3D;
+  margin: 1%;
+}
+
+.card-body {
+  background-color: #FFF;
+  padding: 5%
+}
+
+.card-text {
+  color: #1F1F3D;
+  margin-bottom: 1%;
+}
+
+input,
+textarea {
+  border: 1px solid #7b7dc0;
+  padding: 2% 2%;
+  border-radius: 3px;
+}
+
+.input-title {
+
+}
+
+.input-body {
+
+}
+
+.search-button {
+  background-color: #353567;
+  border: none;
+  border-radius: 3px 0 0 3px;
+}
+
+.search-icon {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+/* this one needs to stay down here for cascading */
+.search-input {
+  border-radius: 0 3px 3px 0;
 }
