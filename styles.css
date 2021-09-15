@@ -69,7 +69,10 @@ main {
 }
 
 .ideas {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2.5% 1.5%;
+  margin: 2%;
 }
 
 .search-bar {
@@ -85,4 +88,10 @@ main {
 .form-labels {
   font-size: 70%;
   font-weight: bold;
+}
+
+.idea-cards {
+  border: 2px solid #1F1F3D;
+  margin: 1%;
+  padding: 1.5%;
 }
