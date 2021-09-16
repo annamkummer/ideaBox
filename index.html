@@ -8,10 +8,10 @@
   </head>
     <body>
       <nav>
-        <h1> IdeaBox</h1>
+        <h1>IdeaBox</h1>
         <div class="nav-border">
-          <p class='starred-title'> Filter Starred Ideas</p>
-          <button class='show-button'>Show Starred Ideas</button>
+          <p class="starred-title">Filter Starred Ideas</p>
+          <button class="show-button">Show Starred Ideas</button>
         </div>
       </nav>
       <main>
@@ -21,58 +21,18 @@
             <input type="text" id="title-input" class="input-title" name="title">
             <label for="body" class="form-labels">Body</label>
             <textarea rows="4" id="body-input" class="input-body" name="body" input="" type="text"></textarea>
-            <button class='save-button'>Save</button>
+            <button class="save-button" id="save-button">Save</button>
             <label for="search-ideas"></label>
-            <span class='search-bar'>
-              <button class='search-button'><img class="search-icon" src="assets/search.svg" alt="search"></button>
+            <span class="search-bar">
+              <button class="search-button"><img class="search-icon" src="assets/search.svg" alt="search"></button>
               <input type="search" placeholder="Search ideas" class="search-input" id="search-ideas-input" name="search-ideas">
             </span>
           </form>
         </section>
-        <section class='ideas'>
-          <article class='idea-cards'>
-            <header><img src="assets/star-active.svg" alt="active star"><img src="assets/delete.svg" alt="delete"></header>
-            <div class='card-body'>
-              <h3>Idea title</h3>
-              <p class='card-text'>Idea body. Don't ever play yourself. Every chance I get, I water the plants. Lion! Cloth talk.</p>
-            </div>
-            <footer><img src="assets/comment.svg" alt="comment">comment</footer>
-          </article>
-          <article class='idea-cards'>
-            <header><img src="assets/star-active.svg" alt="active star"><img src="assets/delete.svg" alt="delete"></header>
-            <div class='card-body'>
-              <h3>Idea title</h3>
-              <p class='card-text'>Idea body. Don't ever play yourself. Every chance I get, I water the plants. Lion! Cloth talk.</p>
-            </div>
-            <footer><img src="assets/comment.svg" alt="comment">comment</footer>
-          </article>
-          <article class='idea-cards'>
-            <header><img src="assets/star-active.svg" alt="active star"><img src="assets/delete.svg" alt="delete"></header>
-            <div class='card-body'>
-              <h3>Idea title</h3>
-              <p class='card-text'>Idea body. Don't ever play yourself. Every chance I get, I water the plants. Lion! Cloth talk.</p>
-            </div>
-            <footer><img src="assets/comment.svg" alt="comment">comment</footer>
-          </article>
-          <article class='idea-cards'>
-            <header><img src="assets/star-active.svg" alt="active star"><img src="assets/delete.svg" alt="delete"></header>
-            <div class='card-body'>
-              <h3>Idea title</h3>
-              <p class='card-text'>Idea body. Don't ever play yourself. Every chance I get, I water the plants. Lion! Cloth talk.</p>
-            </div>
-            <footer><img src="assets/comment.svg" alt="comment">comment</footer>
-          </article>
-          <article class='idea-cards'>
-            <header><img src="assets/star-active.svg" alt="active star"><img src="assets/delete.svg" alt="delete"></header>
-            <div class='card-body'>
-              <h3>Idea title</h3>
-              <p class='card-text'>Idea body. Don't ever play yourself. Every chance I get, I water the plants. Lion! Cloth talk.</p>
-            </div>
-            <footer><img src="assets/comment.svg" alt="comment">comment</footer>
-          </article>
+        <section class="ideas" id="ideas-section">
         </section>
       </main>
-      <script type='text/javascript' src='main.js'></script>
-      <script type='text/javascript' src='Idea.js'></script>
+      <script type="text/javascript" src="Idea.js"></script>
+      <script type="text/javascript" src="main.js"></script>
     </body>
   </html>

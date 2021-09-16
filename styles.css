@@ -45,6 +45,15 @@ footer,
   color: #E9E9F3;
 }
 
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: no-drop;
+  background-color: gray;
+}
+
 .save-button {
   padding: 2%;
   background-color: #353567;
