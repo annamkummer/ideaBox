@@ -57,10 +57,19 @@ function displayCard() {
     var ideaTitle = list[i].title;
     var ideaBody = list[i].body;
     var ideaId = list[i].id;
+    var starImg;
+    var starAlt
+    if (list[i].star) {
+      starImg = 'assets/star-active.svg'
+      starAlt = 'active orange star'
+    } else {
+      starImg = 'assets/star.svg'
+      starAlt = 'inactive white star'
+    }
   ideaSection.innerHTML += `
     <article class='idea-cards' id="${ideaId}">
       <header>
-        <img src="assets/star.svg" id="star" alt="active star">
+        <img src="${starImg}" id="star" alt="${starAlt}">
         <img src="assets/delete.svg" id="delete" alt="delete">
       </header>
       <div class='card-body'>
@@ -74,23 +83,18 @@ function displayCard() {
 
 function deleteCard(id) {
   for (var i = 0; i < list.length; i++) {
-  // console.log(list[i].id)
     if (list[i].id === id) {
       list.splice(i, 1);
     }
   }
-  // console.log(list);
   displayCard();
 }
 
 function favoriteCard(id) {
   for (var i = 0; i < list.length; i++) {
-  // console.log(list[i].id)
     if (list[i].id === id) {
       list[i].star = true;
-      //change img src to assets/star-active.svg
     }
   }
-  // console.log(list);
   displayCard();
 }
