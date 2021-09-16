@@ -41,7 +41,8 @@ function createNewIdea() {
    var title = titleInput.value;
    var body = bodyInput.value;
    var newIdea = new Idea(title, body);
-   list.push(newIdea);
+   newIdea.saveToStorage();
+   // list.push(newIdea);
    displayCard()
    clearInputs()
    event.preventDefault()
@@ -51,14 +52,13 @@ function createNewIdea() {
 }
 
 function displayCard() {
-  ideaSection.innerHTML = '';
-  for(var i = 0; i < list.length; i++) {
-    var ideaTitle = list[i].title;
-    var ideaBody = list[i].body;
-    var ideaId = list[i].id;
+  for(var i = 0; i < localStorage.length; i++){
+    var ideaTitle = localStorage[i].title;
+    var ideaBody = localStorage[i].body;
+    var ideaId = localStorage[i].id;
     var starImg;
     var starAlt
-    if (list[i].star) {
+    if (localStorage[i].star) {
       starImg = 'assets/star-active.svg'
       starAlt = 'unfavorite this idea'
     } else {
@@ -77,9 +77,38 @@ function displayCard() {
       </div>
       <footer><img src="assets/comment.svg" alt="comment">comment</footer>
     </article>`
+    }
+    event.preventDefault();
   }
-  console.log(ideaSection)
-}
+//   ideaSection.innerHTML = '';
+//   for(var i = 0; i < list.length; i++) {
+//     var ideaTitle = list[i].title;
+//     var ideaBody = list[i].body;
+//     var ideaId = list[i].id;
+//     var starImg;
+//     var starAlt
+//     if (list[i].star) {
+//       starImg = 'assets/star-active.svg'
+//       starAlt = 'unfavorite this idea'
+//     } else {
+//       starImg = 'assets/star.svg'
+//       starAlt = 'favorite this idea'
+//     }
+//   ideaSection.innerHTML += `
+//     <article class='idea-cards' id="${ideaId}">
+//       <header>
+//         <img src="${starImg}" id="star" alt="${starAlt}">
+//         <img src="assets/delete.svg" id="delete" alt="delete">
+//       </header>
+//       <div class='card-body'>
+//         <h3>${ideaTitle}</h3>
+//         <p class='card-text'>${ideaBody}</p>
+//       </div>
+//       <footer><img src="assets/comment.svg" alt="comment">comment</footer>
+//     </article>`
+//   }
+//   console.log(ideaSection)
+// }
 
 function deleteCard(id) {
   for (var i = 0; i < list.length; i++) {
@@ -93,7 +122,8 @@ function deleteCard(id) {
 function favoriteCard(id) {
   for (var i = 0; i < list.length; i++) {
     if (list[i].id === id) {
-      list[i].star = (!list[i].star)
+      // list[i].star = (!list[i].star)
+      list[i].updateIdea();
     }
   }
   displayCard();
@@ -109,8 +139,10 @@ Output:
 when the user refreshes, the idea card is still saved in local storage.
 
 code:
-1. we want to turn list array into a string using JSON.stringify() for our local storage to read that array.
+1. we want to turn saved idea into a string using JSON.stringify() for our local storage to read that array.
 
 2.
+
+?: we call our method withing the createNewIdea function after a new class is made;
 
 */
