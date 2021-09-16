@@ -98,3 +98,19 @@ function favoriteCard(id) {
   }
   displayCard();
 }
+
+
+/*
+Goals:
+the goal is to save the list array into local storage and when the page refreshes, the ideas are still saved.
+Input:
+we want push our list array into local storage.
+Output:
+when the user refreshes, the idea card is still saved in local storage.
+
+code:
+1. we want to turn list array into a string using JSON.stringify() for our local storage to read that array.
+
+2.
+
+*/
