@@ -8,6 +8,12 @@ var ideaSection = document.querySelector('#ideas-section');
 saveButton.addEventListener('click', createNewIdea);
 titleInput.addEventListener('keyup', checkInputs);
 bodyInput.addEventListener('keyup', checkInputs);
+ideaSection.addEventListener('click', function(event) {
+  if (event.target.id === 'delete') {
+    console.log('parentNode?', event.target.parentNode.parentNode.id);
+    deleteCard(Number(event.target.parentNode.parentNode.id));
+  }
+});
 
 function checkInputs(){
   var title = titleInput.value;
@@ -32,6 +38,7 @@ function createNewIdea() {
    var body = bodyInput.value;
    var newIdea = new Idea(title, body);
    list.push(newIdea);
+console.log(list);
    displayCard()
    clearInputs()
    event.preventDefault()
@@ -42,7 +49,7 @@ function createNewIdea() {
 
 function displayCard() {
   ideaSection.innerHTML = '';
-  for(var i = 0; i < list.length; i++){
+  for(var i = 0; i < list.length; i++) {
     var ideaTitle = list[i].title;
     var ideaBody = list[i].body;
     var ideaId = list[i].id;
@@ -50,7 +57,7 @@ function displayCard() {
     <article class='idea-cards' id="${ideaId}">
       <header>
         <img src="assets/star-active.svg" alt="active star">
-        <img src="assets/delete.svg" alt="delete">
+        <img src="assets/delete.svg" id="delete" alt="delete">
       </header>
       <div class='card-body'>
         <h3>${ideaTitle}</h3>
@@ -60,3 +67,18 @@ function displayCard() {
     </article>`
   }
 }
+
+function deleteCard(id) {
+  // var ideaCardID = Number(id);
+  for (var i = 0; i < list.length; i++) {
+  console.log(list[i].id)
+    if (list[i].id === id) {
+      list.splice(i, 1);
+    }
+  }
+  console.log(list);
+  displayCard();
+}
+
+//target the X button, using the parent id (ideas-section)
+//to remove that Idea from the array & the display
