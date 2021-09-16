@@ -10,8 +10,12 @@ titleInput.addEventListener('keyup', checkInputs);
 bodyInput.addEventListener('keyup', checkInputs);
 ideaSection.addEventListener('click', function(event) {
   if (event.target.id === 'delete') {
-    console.log('parentNode?', event.target.parentNode.parentNode.id);
     deleteCard(Number(event.target.parentNode.parentNode.id));
+  }
+});
+ideaSection.addEventListener('click', function(event) {
+  if (event.target.id === 'star') {
+    favoriteCard(Number(event.target.parentNode.parentNode.id));
   }
 });
 
@@ -56,7 +60,7 @@ function displayCard() {
   ideaSection.innerHTML += `
     <article class='idea-cards' id="${ideaId}">
       <header>
-        <img src="assets/star-active.svg" alt="active star">
+        <img src="assets/star.svg" id="star" alt="active star">
         <img src="assets/delete.svg" id="delete" alt="delete">
       </header>
       <div class='card-body'>
@@ -69,16 +73,24 @@ function displayCard() {
 }
 
 function deleteCard(id) {
-  // var ideaCardID = Number(id);
   for (var i = 0; i < list.length; i++) {
-  console.log(list[i].id)
+  // console.log(list[i].id)
     if (list[i].id === id) {
       list.splice(i, 1);
     }
   }
-  console.log(list);
+  // console.log(list);
   displayCard();
 }
 
-//target the X button, using the parent id (ideas-section)
-//to remove that Idea from the array & the display
+function favoriteCard(id) {
+  for (var i = 0; i < list.length; i++) {
+  // console.log(list[i].id)
+    if (list[i].id === id) {
+      list[i].star = true;
+      //change img src to assets/star-active.svg
+    }
+  }
+  // console.log(list);
+  displayCard();
+}
