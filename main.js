@@ -42,7 +42,6 @@ function createNewIdea() {
    var body = bodyInput.value;
    var newIdea = new Idea(title, body);
    list.push(newIdea);
-console.log(list);
    displayCard()
    clearInputs()
    event.preventDefault()
@@ -61,10 +60,10 @@ function displayCard() {
     var starAlt
     if (list[i].star) {
       starImg = 'assets/star-active.svg'
-      starAlt = 'active orange star'
+      starAlt = 'unfavorite this idea'
     } else {
       starImg = 'assets/star.svg'
-      starAlt = 'inactive white star'
+      starAlt = 'favorite this idea'
     }
   ideaSection.innerHTML += `
     <article class='idea-cards' id="${ideaId}">
@@ -79,6 +78,7 @@ function displayCard() {
       <footer><img src="assets/comment.svg" alt="comment">comment</footer>
     </article>`
   }
+  console.log(ideaSection)
 }
 
 function deleteCard(id) {
