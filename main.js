@@ -93,7 +93,7 @@ function deleteCard(id) {
 function favoriteCard(id) {
   for (var i = 0; i < list.length; i++) {
     if (list[i].id === id) {
-      list[i].star = true;
+      list[i].star = (!list[i].star)
     }
   }
   displayCard();
