@@ -93,6 +93,8 @@ main {
 header {
   display: flex;
   justify-content: space-between;
+  background-color: #1F1F3D;
+  border: 1px solid #1F1F3D;
 }
 
 footer {
@@ -103,7 +105,7 @@ footer {
   text-transform: capitalize;
   color: #E9E9F3;
   font-weight: bold;
-  border-top: 1px solid #1F1F3D;
+  border: 1px solid #1F1F3D;
 }
 
 .form-buttons {
@@ -146,6 +148,8 @@ footer {
 .card-body {
   background-color: #FFF;
   padding: 5%
+  border-left: 1px solid #1F1F3D;
+  border-right: 1px solid #1F1F3D;
 }
 
 .card-text {
