@@ -1,4 +1,5 @@
-var list = [];
+var list = []; //we may want to update this to ideas, to match the comp
+var favoriteIdeas = []; //added this as we're going to need to collect these too
 
 var titleInput = document.querySelector('#title-input');
 var bodyInput = document.querySelector('#body-input');
@@ -18,11 +19,11 @@ ideaSection.addEventListener('click', function(event) {
     favoriteCard(Number(event.target.parentNode.parentNode.id));
   }
 });
+window.addEventListener('load', displayCard());
+//we need to add displayCard() function to an on page load eventListener so
 
 function checkInputs(){
-  var title = titleInput.value;
-  var body = bodyInput.value;
-  if (!title || !body){
+  if (!titleInput.value || !bodyInput.value) {
     saveButton.disabled = true;
   } else {
     saveButton.disabled = false;
@@ -38,21 +39,22 @@ function clearInputs() {
 }
 
 function createNewIdea() {
-   var title = titleInput.value;
-   var body = bodyInput.value;
-   var newIdea = new Idea(title, body);
-   list.push(newIdea);
-   displayCard()
-   clearInputs()
-   event.preventDefault()
-
+  event.preventDefault()
+  var title = titleInput.value;
+  var body = bodyInput.value;
+  var newIdea = new Idea(title, body);
 // May refactor to:
   // var newIdea = new Idea(titleInput.value, bodyInput.value)
+  newIdea.saveToStorage();//this calls localStorage
+  list.push(newIdea);//pushes to array
+  displayCard()
+  clearInputs()
 }
 
 function displayCard() {
   ideaSection.innerHTML = '';
   for(var i = 0; i < list.length; i++) {
+//we can definitely refactor by taking out a bunch of these vars
     var ideaTitle = list[i].title;
     var ideaBody = list[i].body;
     var ideaId = list[i].id;
@@ -94,6 +96,7 @@ function favoriteCard(id) {
   for (var i = 0; i < list.length; i++) {
     if (list[i].id === id) {
       list[i].star = (!list[i].star)
+      list[i].saveToStorage();
     }
   }
   displayCard();
