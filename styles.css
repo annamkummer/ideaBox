@@ -94,7 +94,7 @@ header {
   display: flex;
   justify-content: space-between;
   background-color: #1F1F3D;
-  border: 1px solid #1F1F3D;
+  /* border: 1px solid #1F1F3D; */
 }
 
 footer {
@@ -105,7 +105,7 @@ footer {
   text-transform: capitalize;
   color: #E9E9F3;
   font-weight: bold;
-  border: 1px solid #1F1F3D;
+  /* border: 1px solid #1F1F3D; */
 }
 
 .form-buttons {
@@ -117,6 +117,7 @@ footer {
 .ideas {
   display: grid;
   grid-template-columns: repeat(3,1fr);
+  align-items: start;
   grid-gap: 2.5% 1.5%;
   margin: 2%;
 }
@@ -141,15 +142,15 @@ footer {
 
 .idea-cards {
   border: 1px solid #1F1F3D;
-  background-color: #1F1F3D;
+  /* background-color: #1F1F3D; */
   margin: 1%;
 }
 
 .card-body {
   background-color: #FFF;
-  padding: 5%
-  border-left: 1px solid #1F1F3D;
-  border-right: 1px solid #1F1F3D;
+  padding: 5%;
+  /* border-left: 1px solid #1F1F3D;
+  border-right: 1px solid #1F1F3D; */
 }
 
 .card-text {
