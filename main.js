@@ -1,4 +1,4 @@
-var list = [];
+var list = []; //we may want to update this to ideas, to match the comp
 var favoriteIdeas = []; //added this as we're going to need to collect these too
 
 var titleInput = document.querySelector('#title-input');
@@ -41,18 +41,14 @@ function clearInputs() {
 function createNewIdea() {
   var title = titleInput.value;
   var body = bodyInput.value;
-// May refactor to:
-  // var newIdea = new Idea(titleInput.value, bodyInput.value)
   var newIdea = new Idea(title, body);
-//calling localStorage here, vs .push below. Moved .push to saveToStorage method in class Idea
-  newIdea.saveToStorage();
-  localStorage.setItem('${idea.id}', JSON.stringify(newIdea));
-  // list.push(newIdea);
+// May refactor to:
+  // var newIdea = new Idea(titleInput.value, bodyInput.value) */
+  newIdea.saveToStorage();//this calls localStorage
+  list.push(newIdea);//pushes to array
   displayCard()
   clearInputs()
   event.preventDefault()
-
-
 }
 
 function displayCard() {
