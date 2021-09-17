@@ -19,11 +19,11 @@ ideaSection.addEventListener('click', function(event) {
     favoriteCard(Number(event.target.parentNode.parentNode.id));
   }
 });
+window.addEventListener('load', displayCard());
+//we need to add displayCard() function to an on page load eventListener so
 
 function checkInputs(){
-  // var title = titleInput.value;
-  // var body = bodyInput.value;
-  if (!titleInput.value || !bodyInput.value){
+  if (!titleInput.value || !bodyInput.value) {
     saveButton.disabled = true;
   } else {
     saveButton.disabled = false;
@@ -44,7 +44,7 @@ function createNewIdea() {
   var body = bodyInput.value;
   var newIdea = new Idea(title, body);
 // May refactor to:
-  // var newIdea = new Idea(titleInput.value, bodyInput.value) */
+  // var newIdea = new Idea(titleInput.value, bodyInput.value)
   newIdea.saveToStorage();//this calls localStorage
   list.push(newIdea);//pushes to array
   displayCard()
@@ -96,6 +96,7 @@ function favoriteCard(id) {
   for (var i = 0; i < list.length; i++) {
     if (list[i].id === id) {
       list[i].star = (!list[i].star)
+      list[i].saveToStorage();
     }
   }
   displayCard();
