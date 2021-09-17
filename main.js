@@ -39,6 +39,7 @@ function clearInputs() {
 }
 
 function createNewIdea() {
+  event.preventDefault()
   var title = titleInput.value;
   var body = bodyInput.value;
   var newIdea = new Idea(title, body);
@@ -48,7 +49,6 @@ function createNewIdea() {
   list.push(newIdea);//pushes to array
   displayCard()
   clearInputs()
-  event.preventDefault()
 }
 
 function displayCard() {
