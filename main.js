@@ -11,18 +11,18 @@ titleInput.addEventListener('keyup', checkInputs);
 bodyInput.addEventListener('keyup', checkInputs);
 ideaSection.addEventListener('click', function(event) {
   if (event.target.id === 'delete') {
-    deleteCard(Number(event.target.parentNode.parentNode.id));
+    deleteCard(Number(event.target.parentNode.parentNode.id)); //we need to refactor this to not call parentNode twice
   }
 });
 ideaSection.addEventListener('click', function(event) {
   if (event.target.id === 'star') {
-    favoriteCard(Number(event.target.parentNode.parentNode.id));
+    favoriteCard(Number(event.target.parentNode.parentNode.id)); //refactor
   }
 });
 window.addEventListener('load', displayCard());
 //we need to add displayCard() function to an on page load eventListener so
 
-function checkInputs(){
+function checkInputs() {
   if (!titleInput.value || !bodyInput.value) {
     saveButton.disabled = true;
   } else {
@@ -54,7 +54,7 @@ function createNewIdea() {
 function displayCard() {
   ideaSection.innerHTML = '';
   for(var i = 0; i < list.length; i++) {
-//we can definitely refactor by taking out a bunch of these vars
+//we can definitely refactor this to make it DRY code. It's very repetitive.
     var ideaTitle = list[i].title;
     var ideaBody = list[i].body;
     var ideaId = list[i].id;
