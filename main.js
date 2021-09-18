@@ -46,13 +46,20 @@ function createNewIdea() {
 // May refactor to:
   // var newIdea = new Idea(titleInput.value, bodyInput.value)
   newIdea.saveToStorage();//this calls localStorage
-  list.push(newIdea);//pushes to array
+  // list.push(newIdea);//pushes to array
   displayCard()
   clearInputs()
 }
 
 function displayCard() {
   ideaSection.innerHTML = '';
+  //lines 56 - 61 below do bring back local storage on load, but everytime something is favorited it's duplicated
+  for(var i = 0; i < localStorage.length; i++){
+    var key = localStorage.key(i);
+    var storedCard = JSON.parse(localStorage.getItem(key));
+    var newStoredCard = new Idea(/*storedCard.id, */storedCard.title, storedCard.body, storedCard.star); //throwing the id in here jumbles the order of the card
+    list.push(newStoredCard);
+  }
   for(var i = 0; i < list.length; i++) {
 //we can definitely refactor this to make it DRY code. It's very repetitive.
     var ideaTitle = list[i].title;
