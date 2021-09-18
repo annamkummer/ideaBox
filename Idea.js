@@ -1,9 +1,9 @@
 class Idea {
-  constructor(title, body) {
-    this.id = Date.now();
+  constructor(title, body, star) { //IMPORTANT NOTE: Adding id to our params changes the order in which these display on the card causing an undefined
+    this.id = Date.now() || id; //when these two are switched the console throws an error. Not sure why we need the "or", can we talk about this?
     this.title = title;
     this.body = body;
-    this.star = false;
+    this.star = star || false;
   }
 
   saveToStorage() {
@@ -13,10 +13,12 @@ class Idea {
   var userInputs = JSON.stringify(this);
 console.log('Stringified newIdea Object', userInputs);
   localStorage.setItem(`${this.id}`, userInputs);
-  var retrievedId = localStorage.getItem(`${this.id}`);
-console.log(retrievedId);
-  var parsedId = JSON.parse(retrievedId);
-console.log(parsedId);
+
+/* We'll need the code below to parse, but not in this function) */
+  //   var retrievedId = localStorage.getItem(`${this.id}`);
+  // console.log(retrievedId);
+  //   var parsedId = JSON.parse(retrievedId);
+  // console.log(parsedId);
 }
 
   deleteFromStorage() {
