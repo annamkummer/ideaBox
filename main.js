@@ -5,6 +5,20 @@ var titleInput = document.querySelector('#title-input');
 var bodyInput = document.querySelector('#body-input');
 var saveButton = document.querySelector('#save-button');
 var ideaSection = document.querySelector('#ideas-section');
+var showButton = document.querySelector('.show-button')
+
+showButton.addEventListener('click', toggleShowButton)
+var showAll = true;
+
+function toggleShowButton() {
+  showAll = (!showAll);
+  if (showAll) {
+    showButton.innerText = "Show Starred Ideas"
+  } else {
+    showButton.innerText = "Show All Ideas"
+  }
+  displayCard();
+}
 
 saveButton.addEventListener('click', createNewIdea);
 titleInput.addEventListener('keyup', checkInputs);
@@ -54,27 +68,57 @@ function displayCard() {
   pullFromStorage()
   ideaSection.innerHTML = '';
   for(var i = 0; i < list.length; i++) {
-    var starImg;
-    var starAlt;
     if (list[i].star) {
-      starImg = 'assets/star-active.svg'
-      starAlt = 'unfavorite this idea'
-    } else {
-      starImg = 'assets/star.svg'
-      starAlt = 'favorite this idea'
+      ideaSection.innerHTML += `
+        <article class='idea-cards' id="${list[i].id}">
+          <header>
+            <img src="assets/star-active.svg" id="star" alt="unfavorite this idea">
+            <img src="assets/delete.svg" id="delete" alt="delete">
+          </header>
+          <div class='card-body'>
+            <h3>${list[i].title}</h3>
+            <p class='card-text'>${list[i].body}</p>
+          </div>
+          <footer><img src="assets/comment.svg" alt="comment">comment</footer>
+        </article>`
+    } else if (showAll) {
+      ideaSection.innerHTML += `
+        <article class='idea-cards' id="${list[i].id}">
+          <header>
+            <img src="assets/star.svg" id="star" alt="favorite this idea">
+            <img src="assets/delete.svg" id="delete" alt="delete">
+          </header>
+          <div class='card-body'>
+            <h3>${list[i].title}</h3>
+            <p class='card-text'>${list[i].body}</p>
+          </div>
+          <footer><img src="assets/comment.svg" alt="comment">comment</footer>
+        </article>`
     }
-  ideaSection.innerHTML += `
-    <article class='idea-cards' id="${list[i].id}">
-      <header>
-        <img src="${starImg}" id="star" alt="${starAlt}">
-        <img src="assets/delete.svg" id="delete" alt="delete">
-      </header>
-      <div class='card-body'>
-        <h3>${list[i].title}</h3>
-        <p class='card-text'>${list[i].body}</p>
-      </div>
-      <footer><img src="assets/comment.svg" alt="comment">comment</footer>
-    </article>`
+
+
+    // -----
+  //   var starImg;
+  //   var starAlt;
+  //   if (list[i].star) {
+  //     starImg = 'assets/star-active.svg'
+  //     starAlt = 'unfavorite this idea'
+  //   } else {
+  //     starImg = 'assets/star.svg'
+  //     starAlt = 'favorite this idea'
+  //   }
+  // ideaSection.innerHTML += `
+  //   <article class='idea-cards' id="${list[i].id}">
+  //     <header>
+  //       <img src="${starImg}" id="star" alt="${starAlt}">
+  //       <img src="assets/delete.svg" id="delete" alt="delete">
+  //     </header>
+  //     <div class='card-body'>
+  //       <h3>${list[i].title}</h3>
+  //       <p class='card-text'>${list[i].body}</p>
+  //     </div>
+  //     <footer><img src="assets/comment.svg" alt="comment">comment</footer>
+  //   </article>`
   }
 }
 
@@ -109,3 +153,37 @@ function pullFromStorage() {
     list.push(instantiatedCard)
   }
 }
+
+
+/*
+Pseudocode:
+Goal: When "Show starred Ideas" button is pressed,
+      Only favorited ideas should be displayed, and
+      Button text should change to "Show All Ideas"
+
+Input: User clicks "Show starred Ideas" buttons
+
+Output: Display of favorited ideas, button text change
+
+1) Listen for "Show starred ideas" button click
+-- includes having a variable for this button element, and creating an event listener for a click
+
+2) Event handler sets a variable, showAll to true or false accordingly
+
+3) Display starred cards only
+-- Add conditional to displayCard function that looks at the 'starred'/'all' variable and displays accordingly
+
+var showAll = true/false
+if (showStarsOrAll === 'stars') {
+
+}
+
+for (entire list array) {
+  if (element is starred) {
+  display it
+} else if (showAll [is true])
+  display
+}
+
+
+*/
