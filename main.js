@@ -1,6 +1,4 @@
 var list = []; //we may want to update this to ideas, to match the comp
-
-// AKU: I don't think we need this:
 var favoriteIdeas = []; //added this as we're going to need to collect these too
 
 var titleInput = document.querySelector('#title-input');
@@ -38,7 +36,7 @@ ideaSection.addEventListener('click', function(event) {
 window.addEventListener('load', displayCard());
 //we need to add displayCard() function to an on page load eventListener so
 
-function checkInputs() {
+function checkInputs(){
   if (!titleInput.value || !bodyInput.value) {
     saveButton.disabled = true;
   } else {
