@@ -1,20 +1,23 @@
 class Idea {
-  constructor(title, body) {
-    this.id = Date.now();
+  constructor(title, body, star, id) {
+    this.id = id  || Date.now();
     this.title = title;
     this.body = body;
-    this.star = false;
+    this.star = star || false;
   }
 
   saveToStorage() {
-// (should only have one job which is to save the instance to storage)
-  }
+  var id = this.id;
+  var userInputs = JSON.stringify(this);
+  localStorage.setItem(`${id}`, userInputs);
+}
 
   deleteFromStorage() {
-
+    // var retrieveID = localStorage.getItem('{$newIdea.id}')
+    //using localStorage.removeItem();
   }
 
   updateIdea() {
-// (should update the idea’s starred state)
+    this.star = (!this.star);
   }
 }
