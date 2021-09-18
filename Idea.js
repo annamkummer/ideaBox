@@ -1,32 +1,24 @@
 class Idea {
-  constructor(title, body) {
-    this.id = Date.now();
+  constructor(title, body, star, id) {
+    this.id = id  || Date.now();
     this.title = title;
     this.body = body;
-    this.star = false;
+    this.star = star || false;
   }
 
   saveToStorage() {
-// (should only have one job which is to save the instance to storage)
-  // var newIdea = {id: Date.now(), title: titleInput.value, body: bodyInput.value};//do we need id & star here?
-// console.log('newIdea Object', newIdea);
+  var id = this.id;
   var userInputs = JSON.stringify(this);
-console.log('Stringified newIdea Object', userInputs);
-  localStorage.setItem(`${this.id}`, userInputs);
-  var retrievedId = localStorage.getItem(`${this.id}`);
-console.log(retrievedId);
-  var parsedId = JSON.parse(retrievedId);
-console.log(parsedId);
+  localStorage.setItem(`${id}`, userInputs);
 }
 
   deleteFromStorage() {
-    // var retrieveID = localStorage.getItem('{$newIdea.id}')
-    //using localStorage.removeItem();
+    var id = this.id;
+    var userInputs = JSON.stringify(this);
+    localStorage.removeItem(`${id}`, userInputs);
   }
 
   updateIdea() {
-// (should update the idea’s starred state)
-  //using localStorage.getItem()
     this.star = (!this.star);
   }
 }
