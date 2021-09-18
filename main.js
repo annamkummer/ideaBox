@@ -140,39 +140,7 @@ function filterCards(){
     var bodyLowerCase = list[i].body;
     if (titleLowerCase.toLowerCase().includes(inputLowerCase)
      || bodyLowerCase.toLowerCase().includes(inputLowerCase)){
-        
+
     }
   }
 }
-
-
-/*
-Show button Pseudocode:
-Goal: When "Show starred Ideas" button is pressed,
-      Only favorited ideas should be displayed, and
-      Button text should change to "Show All Ideas"
-
-Input: User clicks "Show starred Ideas" buttons
-
-Output: Display of favorited ideas, button text change
-
-1) Listen for "Show starred ideas" button click
--- includes having a variable for this button element, and creating an event listener for a click
-
-2) Event handler sets a variable, showAll to true or false accordingly
-
-3) Display starred cards only
--- Add conditional to displayCard function that looks at the 'starred'/'all' variable and displays accordingly
-
-var showAll = true/false
-if (showStarsOrAll === 'stars') {
-
-}
-
-for (entire list array) {
-  if (element is starred) {
-  display it
-} else if (showAll [is true])
-  display
-}
-*/
