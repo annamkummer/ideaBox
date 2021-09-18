@@ -5,7 +5,8 @@ var titleInput = document.querySelector('#title-input');
 var bodyInput = document.querySelector('#body-input');
 var saveButton = document.querySelector('#save-button');
 var ideaSection = document.querySelector('#ideas-section');
-var showButton = document.querySelector('#show-button')
+var showButton = document.querySelector('#show-button');
+var searchInput = document.querySelector('#search-ideas-input');
 
 showButton.addEventListener('click', toggleShowButton)
 var showAll = true;
@@ -33,6 +34,7 @@ ideaSection.addEventListener('click', function(event) {
     favoriteCard(Number(event.target.parentNode.parentNode.id)); //refactor
   }
 });
+searchInput.addEventListener('keyup', filterCards)
 window.addEventListener('load', displayCard());
 //we need to add displayCard() function to an on page load eventListener so
 
@@ -127,6 +129,19 @@ function pullFromStorage() {
     var storedCard = JSON.parse(localStorage.getItem(key));
     var instantiatedCard = new Idea(storedCard.title, storedCard.body, storedCard.star, storedCard.id);
     list.push(instantiatedCard)
+  }
+}
+
+function filterCards(){
+  var inputLowerCase = searchInput.value.toLowerCase();
+  pullFromStorage();
+  for (var i = 0; i < list.length; i++){
+    var titleLowerCase = list[i].title;
+    var bodyLowerCase = list[i].body;
+    if (titleLowerCase.toLowerCase().includes(inputLowerCase)
+     || bodyLowerCase.toLowerCase().includes(inputLowerCase)){
+        
+    }
   }
 }
 
