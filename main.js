@@ -1,11 +1,13 @@
 var list = []; //we may want to update this to ideas, to match the comp
+
+// AKU: I don't think we need this:
 var favoriteIdeas = []; //added this as we're going to need to collect these too
 
 var titleInput = document.querySelector('#title-input');
 var bodyInput = document.querySelector('#body-input');
 var saveButton = document.querySelector('#save-button');
 var ideaSection = document.querySelector('#ideas-section');
-var showButton = document.querySelector('.show-button')
+var showButton = document.querySelector('#show-button')
 
 showButton.addEventListener('click', toggleShowButton)
 var showAll = true;
@@ -95,39 +97,15 @@ function displayCard() {
           <footer><img src="assets/comment.svg" alt="comment">comment</footer>
         </article>`
     }
-
-
-    // -----
-  //   var starImg;
-  //   var starAlt;
-  //   if (list[i].star) {
-  //     starImg = 'assets/star-active.svg'
-  //     starAlt = 'unfavorite this idea'
-  //   } else {
-  //     starImg = 'assets/star.svg'
-  //     starAlt = 'favorite this idea'
-  //   }
-  // ideaSection.innerHTML += `
-  //   <article class='idea-cards' id="${list[i].id}">
-  //     <header>
-  //       <img src="${starImg}" id="star" alt="${starAlt}">
-  //       <img src="assets/delete.svg" id="delete" alt="delete">
-  //     </header>
-  //     <div class='card-body'>
-  //       <h3>${list[i].title}</h3>
-  //       <p class='card-text'>${list[i].body}</p>
-  //     </div>
-  //     <footer><img src="assets/comment.svg" alt="comment">comment</footer>
-  //   </article>`
   }
 }
 
-// AKU: Edit this to call the Idea.js deleteFromStorage function:
+// AKU: Edited this to call the Idea.js deleteFromStorage function:
 function deleteCard(id) {
   pullFromStorage()
   for (var i = 0; i < list.length; i++) {
     if (list[i].id === id) {
-      localStorage.removeItem(`${id}`)
+      list[i].deleteFromStorage();
     }
   }
   displayCard();
@@ -156,7 +134,7 @@ function pullFromStorage() {
 
 
 /*
-Pseudocode:
+Show button Pseudocode:
 Goal: When "Show starred Ideas" button is pressed,
       Only favorited ideas should be displayed, and
       Button text should change to "Show All Ideas"
@@ -184,6 +162,4 @@ for (entire list array) {
 } else if (showAll [is true])
   display
 }
-
-
 */

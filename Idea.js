@@ -13,8 +13,9 @@ class Idea {
 }
 
   deleteFromStorage() {
-    // var retrieveID = localStorage.getItem('{$newIdea.id}')
-    //using localStorage.removeItem();
+    var id = this.id;
+    var userInputs = JSON.stringify(this);
+    localStorage.removeItem(`${id}`, userInputs);
   }
 
   updateIdea() {
