@@ -65,35 +65,35 @@ function createNewIdea() {
   displayCard()
   clearInputs()
 }
-
+var filteredList = [];
 function displayCard() {
   pullFromStorage();
   filterCards();
   ideaSection.innerHTML = '';
-  for(var i = 0; i < list.length; i++) {
-    if (list[i].star) {
+  for(var i = 0; i < filteredList.length; i++) {
+    if (filteredList[i].star) {
       ideaSection.innerHTML += `
-        <article class='idea-cards' id="${list[i].id}">
+        <article class='idea-cards' id="${filteredList[i].id}">
           <header>
             <img src="assets/star-active.svg" id="star" alt="unfavorite this idea">
             <img src="assets/delete.svg" id="delete" alt="delete">
           </header>
           <div class='card-body'>
-            <h3>${list[i].title}</h3>
-            <p class='card-text'>${list[i].body}</p>
+            <h3>${filteredList[i].title}</h3>
+            <p class='card-text'>${filteredList[i].body}</p>
           </div>
           <footer><img src="assets/comment.svg" alt="comment">comment</footer>
         </article>`
     } else if (showAll) {
       ideaSection.innerHTML += `
-        <article class='idea-cards' id="${list[i].id}">
+        <article class='idea-cards' id="${filteredList[i].id}">
           <header>
             <img src="assets/star.svg" id="star" alt="favorite this idea">
             <img src="assets/delete.svg" id="delete" alt="delete">
           </header>
           <div class='card-body'>
-            <h3>${list[i].title}</h3>
-            <p class='card-text'>${list[i].body}</p>
+            <h3>${filteredList[i].title}</h3>
+            <p class='card-text'>${filteredList[i].body}</p>
           </div>
           <footer><img src="assets/comment.svg" alt="comment">comment</footer>
         </article>`
@@ -134,29 +134,13 @@ function pullFromStorage() {
 }
 
 function filterCards(){
-  // console.log(event);
+  filteredList = [];
   var inputLowerCase = searchInput.value.toLowerCase();
   for (var i = 0; i < list.length; i++){
     var titleLowerCase = list[i].title;
     var bodyLowerCase = list[i].body;
-    // console.log('title', !titleLowerCase.toLowerCase().includes(inputLowerCase));
-    // console.log('body', !bodyLowerCase.toLowerCase().includes(inputLowerCase));
-    console.log(list);
-    if (!titleLowerCase.toLowerCase().includes(inputLowerCase)
-    && !bodyLowerCase.toLowerCase().includes(inputLowerCase)){
-      console.log(list);
-      list.splice(i, 1);
-
-
+    if (titleLowerCase.toLowerCase().includes(inputLowerCase) || bodyLowerCase.toLowerCase().includes(inputLowerCase)) {
+      filteredList.push(list[i]);
     }
   }
 }
-
-/*
-
-if the search input value is in text or body of our cards, then hide cards that
-dont have search input
-
-
-
-*/
