@@ -14,17 +14,19 @@ showButton.addEventListener('click', toggleShowButton);
 saveButton.addEventListener('click', createNewIdea);
 titleInput.addEventListener('keyup', checkInputs);
 bodyInput.addEventListener('keyup', checkInputs);
-ideaSection.addEventListener('click', favoriteOrDelete);
+ideaSection.addEventListener('click', selectCardOption);
 searchInput.addEventListener('keyup', displayCards);
 
 checkInputs();
 displayCards();
 
-function favoriteOrDelete() {
+function selectCardOption() {
   if (event.target.id === 'delete') {
     deleteCard(Number(event.target.closest('.idea-cards').id));
   } else if (event.target.id === 'star') {
     favoriteCard(Number(event.target.closest('.idea-cards').id));
+  } else if (event.target.id === 'add') {
+    swapForms();
   }
 }
 
@@ -79,7 +81,7 @@ function buildHtml(index) {
       <h3>${filteredIdeas[index].title}</h3>
       <p class='card-text'>${filteredIdeas[index].body}</p>
     </div>
-    <footer><img src="assets/comment.svg" alt="comment">comment</footer>
+    <footer><img src="assets/comment.svg" id="add" alt="add-comment">comment</footer>
   </article>`
 }
 
