@@ -14,21 +14,19 @@ showButton.addEventListener('click', toggleShowButton);
 saveButton.addEventListener('click', createNewIdea);
 titleInput.addEventListener('keyup', checkInputs);
 bodyInput.addEventListener('keyup', checkInputs);
-ideaSection.addEventListener('click', function(event) {
-  if (event.target.id === 'delete') {
-    deleteCard(Number(event.target.closest('.idea-cards').id));
-
-  }
-});
-ideaSection.addEventListener('click', function(event) {
-  if (event.target.id === 'star') {
-    favoriteCard(Number(event.target.closest('.idea-cards').id)); 
-  }
-});
+ideaSection.addEventListener('click', favoriteOrDelete);
 searchInput.addEventListener('keyup', displayCard);
 window.addEventListener('load', displayCard);
 
 checkInputs();
+
+function favoriteOrDelete() {
+  if (event.target.id === 'delete') {
+    deleteCard(Number(event.target.closest('.idea-cards').id));
+  } else if (event.target.id === 'star') {
+    favoriteCard(Number(event.target.closest('.idea-cards').id));
+  }
+}
 
 function checkInputs(){
   if (!titleInput.value || !bodyInput.value) {
