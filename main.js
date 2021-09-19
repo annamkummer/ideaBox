@@ -34,7 +34,7 @@ ideaSection.addEventListener('click', function(event) {
     favoriteCard(Number(event.target.parentNode.parentNode.id)); //refactor
   }
 });
-searchInput.addEventListener('keyup', filterCards)
+searchInput.addEventListener('keyup', displayCard)
 window.addEventListener('load', displayCard());
 //we need to add displayCard() function to an on page load eventListener so
 
@@ -67,7 +67,8 @@ function createNewIdea() {
 }
 
 function displayCard() {
-  pullFromStorage()
+  pullFromStorage();
+  filterCards();
   ideaSection.innerHTML = '';
   for(var i = 0; i < list.length; i++) {
     if (list[i].star) {
@@ -133,14 +134,29 @@ function pullFromStorage() {
 }
 
 function filterCards(){
+  // console.log(event);
   var inputLowerCase = searchInput.value.toLowerCase();
-  pullFromStorage();
   for (var i = 0; i < list.length; i++){
     var titleLowerCase = list[i].title;
     var bodyLowerCase = list[i].body;
-    if (titleLowerCase.toLowerCase().includes(inputLowerCase)
-     || bodyLowerCase.toLowerCase().includes(inputLowerCase)){
+    // console.log('title', !titleLowerCase.toLowerCase().includes(inputLowerCase));
+    // console.log('body', !bodyLowerCase.toLowerCase().includes(inputLowerCase));
+    console.log(list);
+    if (!titleLowerCase.toLowerCase().includes(inputLowerCase)
+    && !bodyLowerCase.toLowerCase().includes(inputLowerCase)){
+      console.log(list);
+      list.splice(i, 1);
+
 
     }
   }
 }
+
+/*
+
+if the search input value is in text or body of our cards, then hide cards that
+dont have search input
+
+
+
+*/
