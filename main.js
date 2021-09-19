@@ -1,25 +1,16 @@
-var list = []; //we may want to update this to ideas, to match the comp
-var favoriteIdeas = []; //added this as we're going to need to collect these too
+var ideas = [];
+var filteredIdeas = [];
+var showAll = true;
 
 var titleInput = document.querySelector('#title-input');
 var bodyInput = document.querySelector('#body-input');
 var saveButton = document.querySelector('#save-button');
 var ideaSection = document.querySelector('#ideas-section');
-var showButton = document.querySelector('#show-button')
+var showButton = document.querySelector('#show-button');
+var searchInput = document.querySelector('#search-ideas-input');
+var searchButton = document.querySelector('#search');
 
-showButton.addEventListener('click', toggleShowButton)
-var showAll = true;
-
-function toggleShowButton() {
-  showAll = (!showAll);
-  if (showAll) {
-    showButton.innerText = "Show Starred Ideas"
-  } else {
-    showButton.innerText = "Show All Ideas"
-  }
-  displayCard();
-}
-
+showButton.addEventListener('click', toggleShowButton);
 saveButton.addEventListener('click', createNewIdea);
 titleInput.addEventListener('keyup', checkInputs);
 bodyInput.addEventListener('keyup', checkInputs);
@@ -33,8 +24,10 @@ ideaSection.addEventListener('click', function(event) {
     favoriteCard(Number(event.target.parentNode.parentNode.id)); //refactor
   }
 });
-window.addEventListener('load', displayCard());
-//we need to add displayCard() function to an on page load eventListener so
+searchInput.addEventListener('keyup', displayCard);
+window.addEventListener('load', displayCard);
+
+checkInputs();
 
 function checkInputs(){
   if (!titleInput.value || !bodyInput.value) {
@@ -44,8 +37,6 @@ function checkInputs(){
   }
 }
 
-checkInputs();
-
 function clearInputs() {
   titleInput.value = '';
   bodyInput.value = '';
@@ -54,43 +45,40 @@ function clearInputs() {
 
 function createNewIdea() {
   event.preventDefault()
-  var title = titleInput.value;
-  var body = bodyInput.value;
-  var newIdea = new Idea(title, body);
-// May refactor to:
-  // var newIdea = new Idea(titleInput.value, bodyInput.value)
-  newIdea.saveToStorage();
+  var newIdea = new Idea(titleInput.value, bodyInput.value);
+  newIdea.saveToStorage()
   displayCard()
   clearInputs()
 }
 
 function displayCard() {
   pullFromStorage()
+  filterCards()
   ideaSection.innerHTML = '';
-  for(var i = 0; i < list.length; i++) {
-    if (list[i].star) {
+  for (var i = 0; i < filteredIdeas.length; i++) {
+    if (filteredIdeas[i].star) {
       ideaSection.innerHTML += `
-        <article class='idea-cards' id="${list[i].id}">
+        <article class='idea-cards' id="${filteredIdeas[i].id}">
           <header>
             <img src="assets/star-active.svg" id="star" alt="unfavorite this idea">
             <img src="assets/delete.svg" id="delete" alt="delete">
           </header>
           <div class='card-body'>
-            <h3>${list[i].title}</h3>
-            <p class='card-text'>${list[i].body}</p>
+            <h3>${filteredIdeas[i].title}</h3>
+            <p class='card-text'>${filteredIdeas[i].body}</p>
           </div>
           <footer><img src="assets/comment.svg" alt="comment">comment</footer>
         </article>`
     } else if (showAll) {
       ideaSection.innerHTML += `
-        <article class='idea-cards' id="${list[i].id}">
+        <article class='idea-cards' id="${filteredIdeas[i].id}">
           <header>
             <img src="assets/star.svg" id="star" alt="favorite this idea">
             <img src="assets/delete.svg" id="delete" alt="delete">
           </header>
           <div class='card-body'>
-            <h3>${list[i].title}</h3>
-            <p class='card-text'>${list[i].body}</p>
+            <h3>${filteredIdeas[i].title}</h3>
+            <p class='card-text'>${filteredIdeas[i].body}</p>
           </div>
           <footer><img src="assets/comment.svg" alt="comment">comment</footer>
         </article>`
@@ -98,66 +86,55 @@ function displayCard() {
   }
 }
 
-// AKU: Edited this to call the Idea.js deleteFromStorage function:
 function deleteCard(id) {
   pullFromStorage()
-  for (var i = 0; i < list.length; i++) {
-    if (list[i].id === id) {
-      list[i].deleteFromStorage();
+  for (var i = 0; i < ideas.length; i++) {
+    if (ideas[i].id === id) {
+      ideas[i].deleteFromStorage()
     }
   }
-  displayCard();
+  displayCard()
 }
 
 function favoriteCard(id) {
   pullFromStorage()
-  for (var i = 0; i < list.length; i++) {
-    if (id === list[i].id) {
-      list[i].updateIdea();
-      list[i].saveToStorage();
+  for (var i = 0; i < ideas.length; i++) {
+    if (id === ideas[i].id) {
+      ideas[i].updateIdea()
+      ideas[i].saveToStorage()
     }
-    displayCard();
+    displayCard()
   }
 }
 
 function pullFromStorage() {
-  list = [];
+  ideas = [];
   for (var i = 0; i < localStorage.length; i++) {
     var key = localStorage.key(i);
     var storedCard = JSON.parse(localStorage.getItem(key));
     var instantiatedCard = new Idea(storedCard.title, storedCard.body, storedCard.star, storedCard.id);
-    list.push(instantiatedCard)
+    ideas.push(instantiatedCard)
   }
 }
 
-
-/*
-Show button Pseudocode:
-Goal: When "Show starred Ideas" button is pressed,
-      Only favorited ideas should be displayed, and
-      Button text should change to "Show All Ideas"
-
-Input: User clicks "Show starred Ideas" buttons
-
-Output: Display of favorited ideas, button text change
-
-1) Listen for "Show starred ideas" button click
--- includes having a variable for this button element, and creating an event listener for a click
-
-2) Event handler sets a variable, showAll to true or false accordingly
-
-3) Display starred cards only
--- Add conditional to displayCard function that looks at the 'starred'/'all' variable and displays accordingly
-
-var showAll = true/false
-if (showStarsOrAll === 'stars') {
-
+function filterCards() {
+  filteredIdeas = [];
+  var inputLowerCase = searchInput.value.toLowerCase();
+  for (var i = 0; i < ideas.length; i++) {
+    var titleLowerCase = ideas[i].title;
+    var bodyLowerCase = ideas[i].body;
+    if (titleLowerCase.toLowerCase().includes(inputLowerCase) || bodyLowerCase.toLowerCase().includes(inputLowerCase)) {
+      filteredIdeas.push(ideas[i]);
+    }
+  }
 }
 
-for (entire list array) {
-  if (element is starred) {
-  display it
-} else if (showAll [is true])
-  display
+function toggleShowButton() {
+  showAll = (!showAll);
+  if (showAll) {
+    showButton.innerText = "Show Starred Ideas"
+  } else {
+    showButton.innerText = "Show All Ideas"
+  }
+  displayCard()
 }
-*/
