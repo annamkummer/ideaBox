@@ -15,10 +15,10 @@ saveButton.addEventListener('click', createNewIdea);
 titleInput.addEventListener('keyup', checkInputs);
 bodyInput.addEventListener('keyup', checkInputs);
 ideaSection.addEventListener('click', favoriteOrDelete);
-searchInput.addEventListener('keyup', displayCard);
+searchInput.addEventListener('keyup', displayCards);
 
 checkInputs();
-displayCard();
+displayCards();
 
 function favoriteOrDelete() {
   if (event.target.id === 'delete') {
@@ -46,43 +46,41 @@ function createNewIdea() {
   event.preventDefault()
   var newIdea = new Idea(titleInput.value, bodyInput.value);
   newIdea.saveToStorage()
-  displayCard()
+  displayCards()
   clearInputs()
 }
 
-function displayCard() {
+var ideaCardHtml;
+function displayCards() {
   pullFromStorage()
   filterCards()
   ideaSection.innerHTML = '';
   for (var i = 0; i < filteredIdeas.length; i++) {
-    if (filteredIdeas[i].star) {
-      ideaSection.innerHTML += `
-        <article class='idea-cards' id="${filteredIdeas[i].id}">
-          <header>
-            <img src="assets/star-active.svg" id="star" alt="unfavorite this idea">
-            <img src="assets/delete.svg" id="delete" alt="delete">
-          </header>
-          <div class='card-body'>
-            <h3>${filteredIdeas[i].title}</h3>
-            <p class='card-text'>${filteredIdeas[i].body}</p>
-          </div>
-          <footer><img src="assets/comment.svg" alt="comment">comment</footer>
-        </article>`
-    } else if (showAll) {
-      ideaSection.innerHTML += `
-        <article class='idea-cards' id="${filteredIdeas[i].id}">
-          <header>
-            <img src="assets/star.svg" id="star" alt="favorite this idea">
-            <img src="assets/delete.svg" id="delete" alt="delete">
-          </header>
-          <div class='card-body'>
-            <h3>${filteredIdeas[i].title}</h3>
-            <p class='card-text'>${filteredIdeas[i].body}</p>
-          </div>
-          <footer><img src="assets/comment.svg" alt="comment">comment</footer>
-        </article>`
+    if (filteredIdeas[i].star || showAll) {
+      buildHtml(i);
+      ideaSection.innerHTML += ideaCardHtml;
     }
   }
+}
+
+function buildHtml(index) {
+  if (filteredIdeas[index].star) {
+    var star = 'img class="active-star" src="assets/star-active.svg" id="star" alt="unfavorite this idea"';
+  } else {
+    var star = 'img class="star" src="assets/star.svg" id="star" alt="favorite this idea"';
+  }
+  ideaCardHtml =
+  `<article class='idea-cards' id="${filteredIdeas[index].id}">
+    <header>
+      <${star}>
+      <img src="assets/delete.svg" id="delete" alt="delete">
+    </header>
+    <div class='card-body'>
+      <h3>${filteredIdeas[index].title}</h3>
+      <p class='card-text'>${filteredIdeas[index].body}</p>
+    </div>
+    <footer><img src="assets/comment.svg" alt="comment">comment</footer>
+  </article>`
 }
 
 function deleteCard(id) {
@@ -91,7 +89,7 @@ function deleteCard(id) {
       ideas[i].deleteFromStorage()
     }
   }
-  displayCard()
+  displayCards()
 }
 
 function favoriteCard(id) {
@@ -100,7 +98,7 @@ function favoriteCard(id) {
       ideas[i].updateIdea()
       ideas[i].saveToStorage()
     }
-    displayCard()
+    displayCards()
   }
 }
 
@@ -131,5 +129,5 @@ function toggleShowButton() {
   } else {
     showButton.innerText = "Show All Ideas"
   }
-  displayCard()
+  displayCards()
 }
