@@ -16,9 +16,9 @@ titleInput.addEventListener('keyup', checkInputs);
 bodyInput.addEventListener('keyup', checkInputs);
 ideaSection.addEventListener('click', favoriteOrDelete);
 searchInput.addEventListener('keyup', displayCard);
-window.addEventListener('load', displayCard);
 
 checkInputs();
+displayCard();
 
 function favoriteOrDelete() {
   if (event.target.id === 'delete') {
@@ -86,7 +86,6 @@ function displayCard() {
 }
 
 function deleteCard(id) {
-  pullFromStorage()
   for (var i = 0; i < ideas.length; i++) {
     if (ideas[i].id === id) {
       ideas[i].deleteFromStorage()
@@ -96,7 +95,6 @@ function deleteCard(id) {
 }
 
 function favoriteCard(id) {
-  pullFromStorage()
   for (var i = 0; i < ideas.length; i++) {
     if (id === ideas[i].id) {
       ideas[i].updateIdea()
@@ -120,9 +118,7 @@ function filterCards() {
   filteredIdeas = [];
   var inputLowerCase = searchInput.value.toLowerCase();
   for (var i = 0; i < ideas.length; i++) {
-    var titleLowerCase = ideas[i].title;
-    var bodyLowerCase = ideas[i].body;
-    if (titleLowerCase.toLowerCase().includes(inputLowerCase) || bodyLowerCase.toLowerCase().includes(inputLowerCase)) {
+    if (ideas[i].title.toLowerCase().includes(inputLowerCase) || ideas[i].body.toLowerCase().includes(inputLowerCase)) {
       filteredIdeas.push(ideas[i]);
     }
   }
