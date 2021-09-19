@@ -16,7 +16,7 @@
       </nav>
       <main>
         <section>
-          <form>
+          <form class="create-cards">
             <label for="title" class="form-labels">Title</label>
             <input type="text" id="title-input" class="input-title" name="title">
             <label for="body" class="form-labels">Body</label>
@@ -27,6 +27,11 @@
               <img class="search-icon" src="assets/search.svg" alt="search">
               <input type="search" placeholder="Search ideas" class="search-input" id="search-ideas-input" name="search-ideas">
             </span>
+          </form>
+          <form class="comment hidden">
+            <label for="body" class="form-labels">Comments</label>
+            <textarea rows="4" id="body-input" class="input-body" name="body" input="" type="text"></textarea>
+            <button class="save-button" id="save-button">Add Comment</button>
           </form>
         </section>
         <section class="ideas" id="ideas-section">
