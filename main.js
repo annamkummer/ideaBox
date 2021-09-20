@@ -2,20 +2,20 @@ var ideas = [];
 var filteredIdeas = [];
 var showAll = true;
 var ideaCardHtml;
-var commentedCardId;
+var clickedCardId;
 
 var titleInput = document.querySelector('#titleInput');
 var bodyInput = document.querySelector('#bodyInput');
-var saveButton = document.querySelector('#saveButton');
-var ideaSection = document.querySelector('#ideasSection');
-var showButton = document.querySelector('#showButton');
 var searchInput = document.querySelector('#searchIdeasInput');
+var commentInput = document.querySelector("#commentInput");
+var saveButton = document.querySelector('#saveButton');
 var searchButton = document.querySelector('#search');
+var showButton = document.querySelector('#showButton');
+var addCommentButton = document.querySelector("#addComment");
+var ideaSection = document.querySelector('#ideasSection');
 var createCardForm = document.querySelector('#cardForm');
 var commentForm = document.querySelector("#commentForm");
-var addCommentButton = document.querySelector("#addComment");
-var commentInput = document.querySelector("#commentInput");
-var backToMainForm = document.querySelector("#createNew");
+var backToMainButton = document.querySelector("#createNew");
 
 showButton.addEventListener('click', toggleShowButton);
 saveButton.addEventListener('click', createNewIdea);
@@ -25,54 +25,20 @@ ideaSection.addEventListener('click', selectCardOption);
 searchInput.addEventListener('keyup', displayCards);
 addCommentButton.addEventListener('click', showComment);
 commentInput.addEventListener('keyup', checkCommentInput);
-backToMainForm.addEventListener('click', showMainForm);
+backToMainButton.addEventListener('click', showMainForm);
 
 checkInputs();
 displayCards();
 
-function showComment() {
-  event.preventDefault()
-  var comment = new Comment(commentInput.value);
-  // comment.saveToStorage()
-  for (var i = 0; i < ideas.length; i++) {
-    if (commentedCardId === ideas[i].id) {
-      ideas[i].comments.push(comment);
-      ideas[i].saveToStorage();
-    }
-  }
-  clearInputs()
-  displayCards()
-}
-
 function selectCardOption() {
+  clickedCardId = (Number(event.target.closest('.idea-cards').id));
   if (event.target.id === 'delete') {
-    deleteCard(Number(event.target.closest('.idea-cards').id));
+    deleteCard(clickedCardId);
   } else if (event.target.id === 'star') {
-    favoriteCard(Number(event.target.closest('.idea-cards').id));
+    favoriteCard(clickedCardId);
   } else if (event.target.id === 'add') {
     showCommentForm();
-    commentedCardId = (Number(event.target.closest('.idea-cards').id));
     displayCards()
-  }
-}
-
-function showCommentForm() {
-  createCardForm.classList.add("hidden");
-  commentForm.classList.remove("hidden");
-  checkCommentInput()
-}
-
-function showMainForm(){
-  createCardForm.classList.remove("hidden");
-  commentForm.classList.add("hidden");
-  checkInputs()
-}
-
-function checkCommentInput() {
-  if (!commentInput.value) {
-    addCommentButton.disabled = true;
-  } else {
-    addCommentButton.disabled = false;
   }
 }
 
@@ -102,12 +68,38 @@ function createNewIdea() {
 
 function displayCards() {
   pullFromStorage()
-  filterCards()
+  if (createCardForm.classList.contains("hidden")) {
+    showCommentedCard()
+  } else {
+    filterCards()
+  }
   ideaSection.innerHTML = '';
   for (var i = 0; i < filteredIdeas.length; i++) {
     if (filteredIdeas[i].star || showAll) {
       buildHtml(i);
       ideaSection.innerHTML += ideaCardHtml;
+    }
+  }
+}
+
+function filterCards() {
+  filteredIdeas = [];
+  var inputLowerCase = ''
+  if (searchInput.value) {
+    inputLowerCase = searchInput.value.toLowerCase();
+  }
+  for (var i = 0; i < ideas.length; i++) {
+    if (ideas[i].title.toLowerCase().includes(inputLowerCase) || ideas[i].body.toLowerCase().includes(inputLowerCase)) {
+      filteredIdeas.push(ideas[i]);
+    }
+  }
+}
+
+function showCommentedCard() {
+  filteredIdeas = [];
+  for (var i = 0; i < ideas.length; i++) {
+    if (clickedCardId === ideas[i].id) {
+      filteredIdeas.push(ideas[i]);
     }
   }
 }
@@ -121,9 +113,9 @@ function buildHtml(index) {
   var comments = '';
   var commentTitle = '';
   if (filteredIdeas[index].comments.length) {
-    commentTitle = `<h4>Comments: </h4><br>`
+    commentTitle = `<h4>Comments: </h4>`
     for (var i = 0; i < filteredIdeas[index].comments.length; i++) {
-      comments += `<p>${filteredIdeas[index].comments[i].content}</p><br>`
+      comments += `<p>${filteredIdeas[index].comments[i].content}</p>`
     }
   }
   ideaCardHtml =
@@ -170,31 +162,6 @@ function pullFromStorage() {
   }
 }
 
-function filterCards() {
-  filteredIdeas = [];
-  if (createCardForm.classList.contains("hidden")) {
-    showCommentedCard()
-    return
-  }
-  var inputLowerCase = ''
-  if (searchInput.value) {
-    inputLowerCase = searchInput.value.toLowerCase();
-  }
-  for (var i = 0; i < ideas.length; i++) {
-    if (ideas[i].title.toLowerCase().includes(inputLowerCase) || ideas[i].body.toLowerCase().includes(inputLowerCase)) {
-      filteredIdeas.push(ideas[i]);
-    }
-  }
-}
-
-function showCommentedCard() {
-  for (var i = 0; i < ideas.length; i++) {
-    if (commentedCardId === ideas[i].id) {
-      filteredIdeas.push(ideas[i]);
-    }
-  }
-}
-
 function toggleShowButton() {
   showAll = (!showAll);
   if (showAll) {
@@ -202,5 +169,38 @@ function toggleShowButton() {
   } else {
     showButton.innerText = "Show All Ideas"
   }
+  displayCards()
+}
+
+function showCommentForm() {
+  createCardForm.classList.add("hidden");
+  commentForm.classList.remove("hidden");
+  checkCommentInput()
+}
+
+function showMainForm(){
+  createCardForm.classList.remove("hidden");
+  commentForm.classList.add("hidden");
+  checkInputs()
+}
+
+function checkCommentInput() {
+  if (!commentInput.value) {
+    addCommentButton.disabled = true;
+  } else {
+    addCommentButton.disabled = false;
+  }
+}
+
+function showComment() {
+  event.preventDefault()
+  var comment = new Comment(commentInput.value);
+  for (var i = 0; i < ideas.length; i++) {
+    if (clickedCardId === ideas[i].id) {
+      ideas[i].comments.push(comment);
+      ideas[i].saveToStorage();
+    }
+  }
+  clearInputs()
   displayCards()
 }
