@@ -2,6 +2,7 @@ var ideas = [];
 var filteredIdeas = [];
 var showAll = true;
 var ideaCardHtml;
+var commentedCardId;
 
 var titleInput = document.querySelector('#title-input');
 var bodyInput = document.querySelector('#body-input');
@@ -26,20 +27,20 @@ addCommentButton.addEventListener('click', showComment);
 checkInputs();
 displayCards();
 
-function showComment(id) {
+// AKU: The issue is that we need the id from the searchInput event.target event listener, but that's not what calls this function. This function is called by the addCommentButton:
+function showComment() {
   event.preventDefault()
   var comment = new Comment(commentInput.value);
   // comment.saveToStorage()
-  clearInputs()
   for (var i = 0; i < ideas.length; i++) {
-    if (id === ideas[i].id) {
-      ideas[i].comments.push(comment.content);
-      console.log('new comment: ', comment.content)
+    if (commentedCardId === ideas[i].id) {
+      ideas[i].comments.push(comment);
       ideas[i].saveToStorage();
     }
   }
+  clearInputs()
+  displayCards()
 }
-
 
 function selectCardOption() {
   if (event.target.id === 'delete') {
@@ -47,14 +48,14 @@ function selectCardOption() {
   } else if (event.target.id === 'star') {
     favoriteCard(Number(event.target.closest('.idea-cards').id));
   } else if (event.target.id === 'add') {
-    swapForms();
-    showComment(Number(event.target.closest('.idea-cards').id));
+    showCommentForm();
+    commentedCardId = (Number(event.target.closest('.idea-cards').id));
   }
 }
 
-function swapForms() {
-  createCardForm.classList.toggle("hidden");
-  commentForm.classList.toggle("hidden");
+function showCommentForm() {
+  createCardForm.classList.add("hidden");
+  commentForm.classList.remove("hidden");
 }
 
 function checkInputs(){
@@ -98,6 +99,14 @@ function buildHtml(index) {
   } else {
     var star = 'img class="star" src="assets/star.svg" id="star" alt="favorite this idea"';
   }
+  var comments = ''
+  var commentTitle;
+  if (filteredIdeas[index].comments.length) {
+    commentTitle = `<h4>Comments: </h4><br>`
+    for (var i = 0; i < filteredIdeas[index].comments.length; i++) {
+      comments += `<p>${filteredIdeas[index].comments[i].content}</p><br>`
+    }
+  }
   ideaCardHtml =
   `<article class='idea-cards' id="${filteredIdeas[index].id}">
     <header>
@@ -107,6 +116,7 @@ function buildHtml(index) {
     <div class='card-body'>
       <h3>${filteredIdeas[index].title}</h3>
       <p class='card-text'>${filteredIdeas[index].body}</p>
+      ${commentTitle}${comments}
     </div>
     <footer><img src="assets/comment.svg" id="add" alt="add-comment">comment</footer>
   </article>`
@@ -136,14 +146,17 @@ function pullFromStorage() {
   for (var i = 0; i < localStorage.length; i++) {
     var key = localStorage.key(i);
     var storedCard = JSON.parse(localStorage.getItem(key));
-    var instantiatedCard = new Idea(storedCard.title, storedCard.body, storedCard.star, storedCard.id);
+    var instantiatedCard = new Idea(storedCard.title, storedCard.body, storedCard.star, storedCard.id, storedCard.comments);
     ideas.push(instantiatedCard)
   }
 }
 
 function filterCards() {
   filteredIdeas = [];
-  var inputLowerCase = searchInput.value.toLowerCase();
+  var inputLowerCase = ''
+  if (searchInput.value) {
+    inputLowerCase = searchInput.value.toLowerCase();
+  }
   for (var i = 0; i < ideas.length; i++) {
     if (ideas[i].title.toLowerCase().includes(inputLowerCase) || ideas[i].body.toLowerCase().includes(inputLowerCase)) {
       filteredIdeas.push(ideas[i]);
