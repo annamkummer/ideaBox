@@ -15,6 +15,7 @@ var createCardForm = document.querySelector('#cardForm');
 var commentForm = document.querySelector("#commentForm");
 var addCommentButton = document.querySelector("#addComment");
 var commentInput = document.querySelector("#commentInput");
+var backToMainForm = document.querySelector("#createNew");
 
 showButton.addEventListener('click', toggleShowButton);
 saveButton.addEventListener('click', createNewIdea);
@@ -24,6 +25,7 @@ ideaSection.addEventListener('click', selectCardOption);
 searchInput.addEventListener('keyup', displayCards);
 addCommentButton.addEventListener('click', showComment);
 commentInput.addEventListener('keyup', checkCommentInput);
+backToMainForm.addEventListener('click', showMainForm);
 
 checkInputs();
 displayCards();
@@ -57,6 +59,12 @@ function showCommentForm() {
   createCardForm.classList.add("hidden");
   commentForm.classList.remove("hidden");
   checkCommentInput()
+}
+
+function showMainForm(){
+  createCardForm.classList.remove("hidden");
+  commentForm.classList.add("hidden");
+  checkInputs()
 }
 
 function checkCommentInput() {
