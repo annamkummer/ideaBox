@@ -1,6 +1,7 @@
 var ideas = [];
 var filteredIdeas = [];
 var showAll = true;
+var ideaCardHtml;
 
 var titleInput = document.querySelector('#title-input');
 var bodyInput = document.querySelector('#body-input');
@@ -9,6 +10,10 @@ var ideaSection = document.querySelector('#ideas-section');
 var showButton = document.querySelector('#show-button');
 var searchInput = document.querySelector('#search-ideas-input');
 var searchButton = document.querySelector('#search');
+var createCardForm = document.querySelector('#card-form');
+var commentForm = document.querySelector("#comment-form");
+var addCommentButton = document.querySelector("#add-comment");
+var commentInput = document.querySelector("#comment-input");
 
 showButton.addEventListener('click', toggleShowButton);
 saveButton.addEventListener('click', createNewIdea);
@@ -16,9 +21,25 @@ titleInput.addEventListener('keyup', checkInputs);
 bodyInput.addEventListener('keyup', checkInputs);
 ideaSection.addEventListener('click', selectCardOption);
 searchInput.addEventListener('keyup', displayCards);
+addCommentButton.addEventListener('click', showComment);
 
 checkInputs();
 displayCards();
+
+function showComment(id) {
+  event.preventDefault()
+  var comment = new Comment(commentInput.value);
+  // comment.saveToStorage()
+  clearInputs()
+  for (var i = 0; i < ideas.length; i++) {
+    if (id === ideas[i].id) {
+      ideas[i].comments.push(comment.content);
+      console.log('new comment: ', comment.content)
+      ideas[i].saveToStorage();
+    }
+  }
+}
+
 
 function selectCardOption() {
   if (event.target.id === 'delete') {
@@ -27,7 +48,13 @@ function selectCardOption() {
     favoriteCard(Number(event.target.closest('.idea-cards').id));
   } else if (event.target.id === 'add') {
     swapForms();
+    showComment(Number(event.target.closest('.idea-cards').id));
   }
+}
+
+function swapForms() {
+  createCardForm.classList.toggle("hidden");
+  commentForm.classList.toggle("hidden");
 }
 
 function checkInputs(){
@@ -41,6 +68,7 @@ function checkInputs(){
 function clearInputs() {
   titleInput.value = '';
   bodyInput.value = '';
+  commentInput.value = '';
   checkInputs()
 }
 
@@ -52,7 +80,6 @@ function createNewIdea() {
   clearInputs()
 }
 
-var ideaCardHtml;
 function displayCards() {
   pullFromStorage()
   filterCards()
