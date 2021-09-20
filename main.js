@@ -52,6 +52,7 @@ function selectCardOption() {
   } else if (event.target.id === 'add') {
     showCommentForm();
     commentedCardId = (Number(event.target.closest('.idea-cards').id));
+    displayCards()
   }
 }
 
@@ -171,12 +172,24 @@ function pullFromStorage() {
 
 function filterCards() {
   filteredIdeas = [];
+  if (createCardForm.classList.contains("hidden")) {
+    showCommentedCard()
+    return
+  }
   var inputLowerCase = ''
   if (searchInput.value) {
     inputLowerCase = searchInput.value.toLowerCase();
   }
   for (var i = 0; i < ideas.length; i++) {
     if (ideas[i].title.toLowerCase().includes(inputLowerCase) || ideas[i].body.toLowerCase().includes(inputLowerCase)) {
+      filteredIdeas.push(ideas[i]);
+    }
+  }
+}
+
+function showCommentedCard() {
+  for (var i = 0; i < ideas.length; i++) {
+    if (commentedCardId === ideas[i].id) {
       filteredIdeas.push(ideas[i]);
     }
   }
