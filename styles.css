@@ -12,6 +12,10 @@ other purple - #353567
   font-family: 'Open Sans', sans-serif;
 }
 
+.hidden {
+  display: none;
+}
+
 body {
   display: grid;
   grid-template-columns: 20% 80%;
