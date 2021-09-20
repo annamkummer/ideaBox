@@ -4,17 +4,17 @@ var showAll = true;
 var ideaCardHtml;
 var commentedCardId;
 
-var titleInput = document.querySelector('#title-input');
-var bodyInput = document.querySelector('#body-input');
-var saveButton = document.querySelector('#save-button');
-var ideaSection = document.querySelector('#ideas-section');
-var showButton = document.querySelector('#show-button');
-var searchInput = document.querySelector('#search-ideas-input');
+var titleInput = document.querySelector('#titleInput');
+var bodyInput = document.querySelector('#bodyInput');
+var saveButton = document.querySelector('#saveButton');
+var ideaSection = document.querySelector('#ideasSection');
+var showButton = document.querySelector('#showButton');
+var searchInput = document.querySelector('#searchIdeasInput');
 var searchButton = document.querySelector('#search');
-var createCardForm = document.querySelector('#card-form');
-var commentForm = document.querySelector("#comment-form");
-var addCommentButton = document.querySelector("#add-comment");
-var commentInput = document.querySelector("#comment-input");
+var createCardForm = document.querySelector('#cardForm');
+var commentForm = document.querySelector("#commentForm");
+var addCommentButton = document.querySelector("#addComment");
+var commentInput = document.querySelector("#commentInput");
 
 showButton.addEventListener('click', toggleShowButton);
 saveButton.addEventListener('click', createNewIdea);
