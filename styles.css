@@ -8,12 +8,10 @@ divider line - #E9E9F3
 other purple - #353567
  */
 
+/* OVERALL DISPLAY */
+
 * {
   font-family: 'Open Sans', sans-serif;
-}
-
-.hidden {
-  display: none;
 }
 
 body {
@@ -27,6 +25,45 @@ nav {
   background-color: #1F1F3D;
 }
 
+h1,
+footer,
+.show-button,
+.save-button,
+.add-comment-btn,
+.create-new-btn {
+  font-size: 95%;
+  color: #E9E9F3;
+}
+
+h1 {
+  padding: 1% 10%;
+}
+
+h3 {
+  margin: 0;
+  padding-top: 5%;
+}
+
+.nav-border {
+  border-top: 1px solid #353567;
+  border-bottom: 1px solid #353567;
+  padding: 5% 10% 10% 10%;
+}
+
+.starred-title {
+  color: #BFBFDD;
+  font-size: 80%;
+  font-weight: bold;
+  margin-bottom: 10%;
+  padding: 1% 2%;
+}
+
+.hidden {
+  display: none;
+}
+
+/* FORMS */
+
 form {
   display: flex;
   align-content: center;
@@ -37,19 +74,49 @@ form {
   padding: 2% 25%;
 }
 
-img {
-  width: 15%;
+.form-labels {
+  font-size: 70%;
+  font-weight: bold;
+  color: #353567;
+  margin: 2% 0 1%;
 }
 
-h1,
-footer,
-.show-button,
-.save-button,
-.add-comment-btn,
-.create-new-btn {
-  font-size: 95%;
-  color: #E9E9F3;
+.form-buttons {
+  background-color: #353567;
+  margin: 1% 0;
+  border: none;
 }
+
+.comment-form {
+  align-content: stretch;
+}
+
+.comment-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+input,
+textarea {
+  border: 1px solid #7b7dc0;
+  padding: 2% 2%;
+  border-radius: 3px;
+}
+
+.search-icon {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  padding: 5% 10% 5% 10%;
+}
+
+.search-input {
+  border-radius: 0 3px 3px 0;
+}
+
+/* BUTTONS */
 
 button {
   cursor: pointer;
@@ -75,27 +142,21 @@ button:disabled {
   border-radius: 3px;
 }
 
-h1 {
-  padding: 1% 10%;
-}
-
-h3 {
-  margin: 0;
-  padding-top: 5%;
-}
-
-.starred-title {
-  color: #BFBFDD;
-  font-size: 70%;
-  font-weight: bold;
-  margin-bottom: 10%;
-  padding: 1% 2%;
-}
-
 .show-button {
   background-color: #5356A4;
   border: 0;
   padding: 5% 10%;
+}
+
+.show-button:hover {
+  background-color: #A9AAD2;
+  color: #5356A4;
+}
+
+/* IDEAS */
+
+img {
+  width: 15%;
 }
 
 main {
@@ -106,7 +167,6 @@ header {
   display: flex;
   justify-content: space-between;
   background-color: #1F1F3D;
-  /* border: 1px solid #1F1F3D; */
 }
 
 footer {
@@ -117,13 +177,6 @@ footer {
   text-transform: capitalize;
   color: #E9E9F3;
   font-weight: bold;
-  /* border: 1px solid #1F1F3D; */
-}
-
-.form-buttons {
-  background-color: #353567;
-  margin: 1% 0;
-  border: none;
 }
 
 .ideas {
@@ -142,63 +195,17 @@ footer {
   border-radius: 3px 0 0 3px;
 }
 
-.nav-border {
-  border-top: 1px solid #353567;
-  border-bottom: 1px solid #353567;
-  padding: 5% 10% 10% 10%;
-}
-
-.form-labels {
-  font-size: 70%;
-  font-weight: bold;
-  color: #353567;
-  margin: 2% 0 1%;
-}
-
 .idea-cards {
   border: 1px solid #1F1F3D;
-  /* background-color: #1F1F3D; */
   margin: 1%;
 }
 
 .card-body {
   background-color: #FFF;
   padding: 5%;
-  /* border-left: 1px solid #1F1F3D;
-  border-right: 1px solid #1F1F3D; */
 }
 
 .card-text {
   color: #1F1F3D;
   margin-bottom: 1%;
-}
-
-input,
-textarea {
-  border: 1px solid #7b7dc0;
-  padding: 2% 2%;
-  border-radius: 3px;
-}
-
-.search-icon {
-  width: 70%;
-  display: flex;
-  justify-content: center;
-  padding: 5% 10% 5% 10%;
-}
-
-/* this one needs to stay down here for cascading */
-.search-input {
-  border-radius: 0 3px 3px 0;
-}
-
-.comment-form {
-  align-content: stretch;
-}
-
-.comment-buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
 }
