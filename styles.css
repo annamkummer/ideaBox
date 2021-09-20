@@ -44,7 +44,9 @@ img {
 h1,
 footer,
 .show-button,
-.save-button {
+.save-button,
+.add-comment-btn,
+.create-new-btn {
   font-size: 95%;
   color: #E9E9F3;
 }
@@ -53,13 +55,19 @@ button {
   cursor: pointer;
 }
 
+button:hover {
+  background-color: #5356A4;
+}
+
 button:disabled {
   cursor: no-drop;
   background-color: gray;
 }
 
-.save-button {
-  padding: 2%;
+.save-button,
+.add-comment-btn,
+.create-new-btn {
+  padding: 2% 10%;
   background-color: #353567;
   margin: 5% 0%;
   border: none;
@@ -182,4 +190,15 @@ textarea {
 /* this one needs to stay down here for cascading */
 .search-input {
   border-radius: 0 3px 3px 0;
+}
+
+.comment-form {
+  align-content: stretch;
+}
+
+.comment-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }

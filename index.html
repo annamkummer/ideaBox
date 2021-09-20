@@ -21,18 +21,20 @@
             <input type="text" id="titleInput" class="input-title" name="title">
             <label for="body" class="form-labels">Body</label>
             <textarea rows="4" id="bodyInput" class="input-body" name="body" input="" type="text"></textarea>
-            <button class="save-button" id="saveButton">Save</button>
+            <button class="save-button" id="saveButton" title="Save your awesome idea!">Save</button>
             <label for="search-ideas"></label>
             <span class="search-bar">
               <img class="search-icon" src="assets/search.svg" alt="search">
               <input type="search" placeholder="Search ideas" class="search-input" id="searchIdeasInput" name="search-ideas">
             </span>
           </form>
-          <form class="comment hidden" id="commentForm">
+          <form class="comment-form hidden" id="commentForm">
             <label for="body" class="form-labels">Comments</label>
             <textarea rows="4" id="commentInput" class="input-body" name="body" input="" type="text"></textarea>
-            <button class="save-button" id="addComment">Add Comment</button>
-            <button class="save-button" id="createNew">Create New Idea</button>
+            <div class="comment-buttons">
+              <button class="add-comment-btn" id="addComment">Add Comment</button>
+              <button class="create-new-btn" id="createNew" title="return to create idea form">Create New Idea</button>
+            </div>
           </form>
         </section>
         <section class="ideas" id="ideasSection">
