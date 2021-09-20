@@ -23,11 +23,11 @@ bodyInput.addEventListener('keyup', checkInputs);
 ideaSection.addEventListener('click', selectCardOption);
 searchInput.addEventListener('keyup', displayCards);
 addCommentButton.addEventListener('click', showComment);
+commentInput.addEventListener('keyup', checkCommentInput);
 
 checkInputs();
 displayCards();
 
-// AKU: The issue is that we need the id from the searchInput event.target event listener, but that's not what calls this function. This function is called by the addCommentButton:
 function showComment() {
   event.preventDefault()
   var comment = new Comment(commentInput.value);
@@ -56,6 +56,15 @@ function selectCardOption() {
 function showCommentForm() {
   createCardForm.classList.add("hidden");
   commentForm.classList.remove("hidden");
+  checkCommentInput()
+}
+
+function checkCommentInput() {
+  if (!commentInput.value) {
+    addCommentButton.disabled = true;
+  } else {
+    addCommentButton.disabled = false;
+  }
 }
 
 function checkInputs(){
@@ -71,6 +80,7 @@ function clearInputs() {
   bodyInput.value = '';
   commentInput.value = '';
   checkInputs()
+  checkCommentInput()
 }
 
 function createNewIdea() {
@@ -99,8 +109,8 @@ function buildHtml(index) {
   } else {
     var star = 'img class="star" src="assets/star.svg" id="star" alt="favorite this idea"';
   }
-  var comments = ''
-  var commentTitle;
+  var comments = '';
+  var commentTitle = '';
   if (filteredIdeas[index].comments.length) {
     commentTitle = `<h4>Comments: </h4><br>`
     for (var i = 0; i < filteredIdeas[index].comments.length; i++) {
