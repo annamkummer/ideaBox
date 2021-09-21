@@ -1,13 +1,3 @@
-/* Dark Purple - #1F1F3D
-Light Purple - #A9AAD2
-Light Gray - #EAEAF4
-white - #FFFFF
-comment text - #E9E9F3
-button background - #5356A4
-divider line - #E9E9F3
-other purple - #353567
- */
-
 /* OVERALL DISPLAY */
 
 * {
@@ -21,7 +11,8 @@ body {
   margin: 0;
 }
 
-nav {
+nav,
+header {
   background-color: #1F1F3D;
 }
 
@@ -39,14 +30,9 @@ h1 {
   padding: 1% 10%;
 }
 
-h3 {
-  margin: 0;
-  padding-top: 5%;
-}
-
 .nav-border {
-  border-top: 1px solid #353567;
-  border-bottom: 1px solid #353567;
+  border: 1px solid #353567;
+  border-left: none;
   padding: 5% 10% 10% 10%;
 }
 
@@ -106,7 +92,7 @@ textarea {
 }
 
 .search-icon {
-  width: 70%;
+  width: 60%;
   display: flex;
   justify-content: center;
   padding: 5% 10% 5% 10%;
@@ -114,6 +100,10 @@ textarea {
 
 .search-input {
   border-radius: 0 3px 3px 0;
+}
+
+.search-input::placeholder {
+  color: #353567;
 }
 
 /* BUTTONS */
@@ -155,18 +145,22 @@ button:disabled {
 
 /* IDEAS */
 
-img {
-  width: 15%;
-}
-
 main {
   background-color: #EAEAF4;
+}
+
+img {
+  width: 15%;
 }
 
 header {
   display: flex;
   justify-content: space-between;
-  background-color: #1F1F3D;
+}
+
+h3 {
+  margin: 0;
+  padding-top: 5%;
 }
 
 footer {
@@ -175,7 +169,6 @@ footer {
   flex-direction: row;
   align-items: center;
   text-transform: capitalize;
-  color: #E9E9F3;
   font-weight: bold;
 }
 
@@ -192,7 +185,7 @@ footer {
   grid-template-columns: 10% 90%;
   align-items: center;
   background-color: #353567;
-  border-radius: 3px 0 0 3px;
+  border-radius: 3px;
 }
 
 .idea-cards {
@@ -209,3 +202,9 @@ footer {
   color: #1F1F3D;
   margin-bottom: 1%;
 }
+
+.comment-text {
+  overflow-wrap: break-word;
+}
+
+body { min-height: 100vh; };
