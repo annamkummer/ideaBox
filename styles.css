@@ -20,8 +20,8 @@ h1,
 footer,
 .show-button,
 .save-button,
-.add-comment-btn,
-.create-new-btn {
+.add-comment-button,
+.create-new-button {
   font-size: 95%;
   color: #E9E9F3;
 }
@@ -122,8 +122,8 @@ button:disabled {
 }
 
 .save-button,
-.add-comment-btn,
-.create-new-btn {
+.add-comment-button,
+.create-new-button {
   padding: 2% 10%;
   background-color: #353567;
   margin: 5% 0%;

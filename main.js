@@ -12,10 +12,10 @@ var saveButton = document.querySelector('#saveButton');
 var searchButton = document.querySelector('#search');
 var showButton = document.querySelector('#showButton');
 var addCommentButton = document.querySelector("#addComment");
+var backToMainButton = document.querySelector("#createNew");
 var ideaSection = document.querySelector('#ideasSection');
 var createCardForm = document.querySelector('#cardForm');
 var commentForm = document.querySelector("#commentForm");
-var backToMainButton = document.querySelector("#createNew");
 
 showButton.addEventListener('click', toggleShowButton);
 saveButton.addEventListener('click', createNewIdea);

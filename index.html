@@ -6,42 +6,42 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
   </head>
-    <body>
-      <nav>
-        <h1>IdeaBox</h1>
-        <div class="nav-border">
-          <p class="starred-title">Filter Starred Ideas</p>
-          <button class="show-button" id="showButton">Show Starred Ideas</button>
-        </div>
-      </nav>
-      <main>
-        <section>
-          <form class="create-cards" id="cardForm">
-            <label for="title" class="form-labels">Title</label>
-            <input type="text" id="titleInput" class="input-title" name="title">
-            <label for="body" class="form-labels">Body</label>
-            <textarea rows="4" id="bodyInput" class="input-body" name="body" input="" type="text"></textarea>
-            <button class="save-button" id="saveButton" title="Save awesome idea!">Save</button>
-            <label for="search-ideas"></label>
-            <span class="search-bar">
-              <img class="search-icon" src="assets/search.svg" alt="search">
-              <input type="search" placeholder="Search ideas" class="search-input" id="searchIdeasInput" name="search-ideas">
-            </span>
-          </form>
-          <form class="comment-form hidden" id="commentForm">
-            <label for="body" class="form-labels">Comments</label>
-            <textarea rows="4" id="commentInput" class="input-body" name="body" input="" type="text"></textarea>
-            <div class="comment-buttons">
-              <button class="add-comment-btn" id="addComment" title="Add to current idea">Add Comment</button>
-              <button class="create-new-btn" id="createNew" title="return to create idea form">Create New Idea</button>
-            </div>
-          </form>
-        </section>
-        <section class="ideas" id="ideasSection">
-        </section>
-      </main>
-      <script type="text/javascript" src="Comment.js"></script>
-      <script type="text/javascript" src="Idea.js"></script>
-      <script type="text/javascript" src="main.js"></script>
-    </body>
-  </html>
+  <body>
+    <nav>
+      <h1>IdeaBox</h1>
+      <div class="nav-border">
+        <p class="starred-title">Filter Starred Ideas</p>
+        <button class="show-button" id="showButton">Show Starred Ideas</button>
+      </div>
+    </nav>
+    <main>
+      <section>
+        <form class="create-cards" id="cardForm">
+          <label for="title" class="form-labels">Title</label>
+          <input type="text" id="titleInput" class="input-title" name="title">
+          <label for="body" class="form-labels">Body</label>
+          <textarea rows="4" id="bodyInput" class="input-body" name="body" input="" type="text"></textarea>
+          <button class="save-button" id="saveButton" title="Save awesome idea!">Save</button>
+          <label for="search-ideas"></label>
+          <div class="search-bar">
+            <img class="search-icon" src="assets/search.svg" alt="search">
+            <input type="search" placeholder="Search ideas" class="search-input" id="searchIdeasInput" name="search-ideas">
+          </div>
+        </form>
+        <form class="comment-form hidden" id="commentForm">
+          <label for="body" class="form-labels">Comments</label>
+          <textarea rows="4" id="commentInput" class="input-body" name="body" input="" type="text"></textarea>
+          <div class="comment-buttons">
+            <button class="add-comment-button" id="addComment" title="Add to current idea">Add Comment</button>
+            <button class="create-new-button" id="createNew" title="return to create idea form">Create New Idea</button>
+          </div>
+        </form>
+      </section>
+      <section class="ideas" id="ideasSection">
+      </section>
+    </main>
+    <script type="text/javascript" src="Comment.js"></script>
+    <script type="text/javascript" src="Idea.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+  </body>
+</html>

@@ -4,12 +4,10 @@ class Comment {
   }
 
   saveToStorage() {
-    var userInput = JSON.stringify(this);
-    localStorage.setItem(Date.now(), userInput);
+    // this function was called for in the spec but we didnt use it
   }
 
   deleteFromStorage() {
-    var userInput = JSON.stringify(this);
-    localStorage.removeItem(Date.now(), userInputs);
+    // this function was called for in the spec but we didnt use it
   }
 }
