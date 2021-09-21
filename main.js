@@ -115,7 +115,7 @@ function buildHtml(index) {
   if (filteredIdeas[index].comments.length) {
     commentTitle = `<h4>Comments: </h4>`
     for (var i = 0; i < filteredIdeas[index].comments.length; i++) {
-      comments += `<p>${filteredIdeas[index].comments[i].content}</p>`
+      comments += `<p class="comment-text">${filteredIdeas[index].comments[i].content}</p>`
     }
   }
   ideaCardHtml =
