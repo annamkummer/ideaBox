@@ -19,19 +19,21 @@ var backToMainButton = document.querySelector("#createNew");
 
 showButton.addEventListener('click', toggleShowButton);
 saveButton.addEventListener('click', createNewIdea);
+ideaSection.addEventListener('click', selectCardOption);
+addCommentButton.addEventListener('click', showComment);
+backToMainButton.addEventListener('click', showMainForm);
 titleInput.addEventListener('keyup', checkInputs);
 bodyInput.addEventListener('keyup', checkInputs);
-ideaSection.addEventListener('click', selectCardOption);
 searchInput.addEventListener('keyup', displayCards);
-addCommentButton.addEventListener('click', showComment);
 commentInput.addEventListener('keyup', checkCommentInput);
-backToMainButton.addEventListener('click', showMainForm);
 
 checkInputs();
 displayCards();
 
 function selectCardOption() {
-  clickedCardId = (Number(event.target.closest('.idea-cards').id));
+  if (event.target.closest('.idea-cards')) {
+    clickedCardId = (Number(event.target.closest('.idea-cards').id));
+  }
   if (event.target.id === 'delete') {
     deleteCard(clickedCardId);
   } else if (event.target.id === 'star') {
@@ -106,28 +108,31 @@ function showCommentedCard() {
 
 function buildHtml(index) {
   if (filteredIdeas[index].star) {
-    var star = 'img class="active-star" src="assets/star-active.svg" id="star" alt="unfavorite this idea"';
+    var ideaStar = 'img class="active-star" src="assets/star-active.svg" id="star" alt="unfavorite this idea"';
   } else {
-    var star = 'img class="star" src="assets/star.svg" id="star" alt="favorite this idea"';
+    var ideaStar = 'img class="star" src="assets/star.svg" id="star" alt="favorite this idea"';
   }
-  var comments = '';
-  var commentTitle = '';
+  var ideaComments = '';
   if (filteredIdeas[index].comments.length) {
-    commentTitle = `<h4>Comments: </h4>`
+    ideaComments = `<h4>Comments: </h4>`
     for (var i = 0; i < filteredIdeas[index].comments.length; i++) {
-      comments += `<p class="comment-text">${filteredIdeas[index].comments[i].content}</p>`
+      ideaComments += `<p class="comment-text">${filteredIdeas[index].comments[i].content}</p>`
     }
   }
+  buildCardHtml(filteredIdeas[index].id, ideaStar, filteredIdeas[index].title, filteredIdeas[index].body, ideaComments)
+}
+
+function buildCardHtml(id, star, title, body, comments) {
   ideaCardHtml =
-  `<article class='idea-cards' id="${filteredIdeas[index].id}">
+  `<article class='idea-cards' id="${id}">
     <header>
       <${star}>
       <img src="assets/delete.svg" id="delete" alt="delete">
     </header>
     <div class='card-body'>
-      <h3>${filteredIdeas[index].title}</h3>
-      <p class='card-text'>${filteredIdeas[index].body}</p>
-      ${commentTitle}${comments}
+      <h3>${title}</h3>
+      <p class='card-text'>${body}</p>
+      ${comments}
     </div>
     <footer><img src="assets/comment.svg" id="add" alt="add-comment">comment</footer>
   </article>`
