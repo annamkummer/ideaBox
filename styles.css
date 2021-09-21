@@ -7,7 +7,6 @@
 body {
   display: grid;
   grid-template-columns: 20% 80%;
-  height: 100vh;
   margin: 0;
 }
 
@@ -127,14 +126,13 @@ button:disabled {
   padding: 2% 10%;
   background-color: #353567;
   margin: 5% 0%;
-  border: none;
+  border: 0;
   border: 1px solid #7b7dc0;
   border-radius: 3px;
 }
 
 .show-button {
   background-color: #5356A4;
-  border: 0;
   padding: 5% 10%;
 }
 
@@ -170,13 +168,13 @@ footer {
   align-items: center;
   text-transform: capitalize;
   font-weight: bold;
+  border: 1px solid #1F1F3D;
 }
 
 .ideas {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  align-items: start;
-  grid-gap: 2.5% 1.5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin: 2%;
 }
 
@@ -189,13 +187,14 @@ footer {
 }
 
 .idea-cards {
-  border: 1px solid #1F1F3D;
   margin: 1%;
+  width: 31%;
 }
 
 .card-body {
   background-color: #FFF;
   padding: 5%;
+  border-inline: 1px solid #1F1F3D;
 }
 
 .card-text {
@@ -206,5 +205,3 @@ footer {
 .comment-text {
   overflow-wrap: break-word;
 }
-
-body { min-height: 100vh; };
